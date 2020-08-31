@@ -47,5 +47,5 @@ void print_PS1(char home_dir[])
     }
     strcat(ret, ">");
     ret[strlen(ret)] = '\0';
-    printf("%s", ret);
+    printf("%s ", ret);
 }

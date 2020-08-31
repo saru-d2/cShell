@@ -47,16 +47,17 @@ void assignPermissions(char permissions[], struct stat s)
 void ls(char *par[], int numPar, char home_dir[])
 {
     bool a = false, l = false;
+    bool takingFlags = true;
     char dir[100000];
     strcpy(dir, ".");
     for (int i = 0; i < numPar; i++)
     {
-        printf("%s\n", par[i]);
-        if (strcmp(par[i], "-a") == 0)
+
+        if (takingFlags && strcmp(par[i], "-a") == 0)
             a = true;
-        else if (strcmp(par[i], "-l") == 0)
+        else if (takingFlags && strcmp(par[i], "-l") == 0)
             l = true;
-        else if (strcmp(par[i], "-la") == 0 || strcmp(par[i], "-al") == 0)
+        else if (takingFlags && strcmp(par[i], "-la") == 0 || strcmp(par[i], "-al") == 0)
             a = l = true;
         else
             strcpy(dir, par[i]);

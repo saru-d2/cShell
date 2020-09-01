@@ -18,3 +18,4 @@ void echo();
 void ls();
 void assignPermissions();
 void foregnd();
+void backgnd();

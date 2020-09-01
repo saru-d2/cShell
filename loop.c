@@ -56,7 +56,7 @@ void loop(char home_dir[])
         if (!done)
         {
             if (numPar > 0 && strcmp(par[numPar - 1], "&") == 0)
-                printf("bg\n");
+                backgnd(cmd, numPar, par);
             else
                 foregnd(cmd, numPar, par);
         }

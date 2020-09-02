@@ -2,27 +2,37 @@
 
 void backgnd(char cmd[], int numPar, char *par[])
 {
-    printf("in backgrnd.c\n");
-    pid_t pid;
-    char *args[100000];
-    strcpy(args[0], cmd);
-    for (int i =0; i<numPar; i++){
-        strcpy(args[i+1], par[i]);
+    numPar--;
+    printf("in backgrnd.c %s\n", cmd);
+    pid_t pid, childP;
+    char *args[numPar + 5];
+    // strcpy(args[0], cmd);
+    args[0] = cmd;
+    fflush(NULL);
+    for (int i = 0; i < numPar; i++)
+    {
+        args[i + 1] = par[i];
     }
+    fflush(NULL);
     args[numPar + 1] = NULL;
     pid = fork();
-    if (pid < 0){
+    if (pid < 0)
+    {
         perror("fork failed");
     }
-    else if (pid == 0){
+    else if (pid == 0)
+    {
         int exret = execvp(cmd, args);
-        if (exret < 0){
+        if (exret < 0)
+        {
             perror("process failed");
-        return;
+            return;
         }
+        return;
     }
-    else {
-
+    else
+    {
+        printf("%s with pid %d is running in the background\n", cmd, pid);
     }
     return;
 }

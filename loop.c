@@ -29,6 +29,9 @@ void loop(char home_dir[])
             done = true;
             break;
         }
+        if (strcmp(cmd, "clear") == 0){
+            clear();
+        }
         if (strcmp(cmd, "cd") == 0)
         {
             cd(numPar, par, home_dir);

@@ -19,3 +19,4 @@ void ls();
 void assignPermissions();
 void foregnd();
 void backgnd();
+void clear();

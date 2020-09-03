@@ -56,6 +56,11 @@ void loop(char home_dir[])
             done = true;
         }
 
+        if (strcmp(cmd, "pinfo") == 0){
+            pinfo(par, numPar);
+            done = true;
+        }
+
         if (!done)
         {
             if (numPar > 0 && strcmp(par[numPar - 1], "&") == 0)

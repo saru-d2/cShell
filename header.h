@@ -8,6 +8,7 @@
 #include <time.h>
 #include <grp.h>
 #include <dirent.h>
+#include <stdlib.h>
 #include <sys/wait.h>
 
 void loop();      //main loop..
@@ -20,3 +21,5 @@ void assignPermissions();
 void foregnd();
 void backgnd();
 void clear();
+void pinfo();
+int strToNum();

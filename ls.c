@@ -17,17 +17,16 @@ void assignPermissions(char permissions[], struct stat s)
 void ls(char *par[], int numPar, char home_dir[])
 {
     bool a = false, l = false;
-    bool takingFlags = true;
     char *dirList[10000], dot[] = ".";
     int dirNo = 0;
     for (int i = 0; i < numPar; i++)
     {
 
-        if (takingFlags && strcmp(par[i], "-a") == 0)
+        if (strcmp(par[i], "-a") == 0)
             a = true;
-        else if (takingFlags && strcmp(par[i], "-l") == 0)
+        else if (strcmp(par[i], "-l") == 0)
             l = true;
-        else if (takingFlags && strcmp(par[i], "-la") == 0 || strcmp(par[i], "-al") == 0)
+        else if (strcmp(par[i], "-la") == 0 || strcmp(par[i], "-al") == 0)
             a = l = true;
         else
             dirList[dirNo++] = par[i];

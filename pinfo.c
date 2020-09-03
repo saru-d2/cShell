@@ -21,7 +21,11 @@ void pinfo (char *par[], int numPar){
             return;
         }
         ID = strToNum(par[0]);
-        // printf("ID: %d\n", ID);
     }
-    
+    char procFile[10000];
+    sprintf(procFile, "/proc/%d/exe", ID);
+    int fd = open(procFile, O_RDONLY);
+
+
+    return;
 }

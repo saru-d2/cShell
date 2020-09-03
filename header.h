@@ -5,6 +5,7 @@
 #include <sys/stat.h>
 #include <stdbool.h>
 #include <pwd.h>
+#include <fcntl.h>
 #include <time.h>
 #include <grp.h>
 #include <dirent.h>

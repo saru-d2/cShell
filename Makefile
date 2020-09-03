@@ -1,6 +1,6 @@
 # to compile
 pls_cmp:
-	gcc-10 -o cSh *.c
+	gcc -o csh *.c
 
 clean: 
 	rm -rf *o

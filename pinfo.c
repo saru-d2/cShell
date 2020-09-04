@@ -11,7 +11,7 @@ int strToNum(char s[])
     return ret;
 }
 
-void pinfo(char *par[], int numPar)
+void pinfo(char *par[], int numPar, char home_dir[])
 {
     int ID;
     if (numPar == 0)
@@ -37,14 +37,41 @@ void pinfo(char *par[], int numPar)
         return;
     }
     printf("pid -- %d\n", ID);
-    char buffer[10000];
-    for (int i = 0; fscanf(fd, "%s", buffer); i++)
+    char infoStr[10000];
+    for (int i = 0; fscanf(fd, "%s", infoStr); i++)
     {
+        if (i == 23)break;
         if (i == 2)
-            printf("Process Status -- %s\n", buffer);
+            printf("Process Status -- %s\n", infoStr);
         if (i == 21)
-            printf("memory -- %s\n", buffer);
+            printf("memory -- %s\n", infoStr);
     }
-
+    sprintf(procFile, "/proc/%d/exe", ID);
+    int n = readlink(procFile, infoStr, 10000);
+    if (n <= -1)
+    {
+        perror("error reading executable path");
+        return;
+    }
+    infoStr[n] = '\0';
+    int hlen = strlen(home_dir);
+    bool rel = true;
+    if (n < hlen)
+        rel = false;
+    if (rel)
+        for (int i = 0; i < hlen; i++)
+        {
+            if (home_dir[i] != infoStr[i])
+                rel = false;
+        }
+    char fin[100000];
+    if (!rel){
+        strcpy(fin, infoStr);
+    }
+    else {
+        strcpy(fin, "~");
+        strcat(fin, infoStr + hlen);
+    }
+    printf("Executable path -- %s\n", fin);
     return;
 }

@@ -15,7 +15,7 @@
 typedef struct job
 {
     int id;
-    char *name;
+    char name[1000];
 } job;
 
 

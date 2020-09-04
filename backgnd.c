@@ -33,14 +33,11 @@ void backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
     }
     else
     {
-        if (exret >= 0)
-        {
-            printf("[%d] %d\n", *jobIter + 1, pid);
-            fflush(NULL);
-            // strcpy(jobArray[*jobIter].name, cmd);
-            // jobArray[*jobIter].id = pid;
-            *jobIter += 1;
-        }
+        printf("[%d] %d %s\n", *jobIter + 1, pid, cmd);
+        jobArray[(*jobIter)].id = pid;
+        strcpy(jobArray[(*jobIter)].name, cmd);
+        printf("%d, %s\n", jobArray[*jobIter].id , jobArray[*jobIter].name);
+        *jobIter += 1;
     }
     return;
 }

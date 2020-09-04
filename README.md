@@ -7,7 +7,7 @@ Instructions to use:
   -> clone the repo
   -> cd to the repository's directory
   -> make
-  -> execute ./cSh
+  -> execute ./csh
   
 main() resides in cShell.c
 the main loop resides in loop.c

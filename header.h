@@ -12,6 +12,13 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
+typedef struct job
+{
+    int id;
+    char *name;
+} job;
+
+
 void loop();      //main loop..
 void print_PS1(); //print the PS1..
 void cd();

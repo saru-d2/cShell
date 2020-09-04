@@ -1,6 +1,6 @@
 #include "header.h"
 
-void backgnd(char cmd[], int numPar, char *par[])
+void backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
 {
     numPar--;
     pid_t pid, childP;
@@ -14,7 +14,7 @@ void backgnd(char cmd[], int numPar, char *par[])
     }
     fflush(NULL);
     args[numPar + 1] = NULL;
-    int exret;
+    int exret = 1;
     pid = fork();
     setpgid(0, 0);
     if (pid < 0)
@@ -34,7 +34,13 @@ void backgnd(char cmd[], int numPar, char *par[])
     else
     {
         if (exret >= 0)
-            printf("%s with pid %d is running in the background\n", cmd, pid);
+        {
+            printf("[%d] %d\n", *jobIter + 1, pid);
+            fflush(NULL);
+            // strcpy(jobArray[*jobIter].name, cmd);
+            // jobArray[*jobIter].id = pid;
+            *jobIter += 1;
+        }
     }
     return;
 }

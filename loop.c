@@ -1,6 +1,10 @@
 #include "header.h"
 char *line_read, *line_tokenised, *tokens[100000], *cmd, *par[100000];
 ssize_t zero = 0;
+
+job jobArr[100000];
+int jobIter = 0;
+
 void loop(char home_dir[])
 {
     bool run = true;
@@ -64,7 +68,7 @@ void loop(char home_dir[])
         if (!done)
         {
             if (numPar > 0 && strcmp(par[numPar - 1], "&") == 0)
-                backgnd(cmd, numPar, par);
+                backgnd(cmd, numPar, par, jobArr, &jobIter);
             else
                 foregnd(cmd, numPar, par);
         }

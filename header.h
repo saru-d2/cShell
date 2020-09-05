@@ -31,3 +31,4 @@ void backgnd();
 void clear();
 void pinfo();
 int strToNum();
+void bgProcessEnd();

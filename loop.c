@@ -1,32 +1,36 @@
 #include "header.h"
+#include "JobStruct.h"
 char *line_read, *breaks[100000], *cmd, *par[100000], *listOfSemiSep[100000];
 ssize_t zero = 0;
-
 job jobArr[100000];
 int jobIter = 0;
+char *homeDir;
 
-void bgEnded(){
-    bgProcessEnd(jobArr, jobIter);
+void bgEnded()
+{
+    bgProcessEnd(jobArr, jobIter, homeDir);
 }
 
 void loop(char home_dir[])
 {
+    homeDir = home_dir;
     bool run = true;
     while (run)
     {
         //chk if anything ended..
         signal(SIGCHLD, bgEnded);
-
+        printf("back\n");
         print_PS1(home_dir);
         getline(&line_read, &zero, stdin);
         // line_tokenised = strtok(line_read, " \n");
         int semiCnt = 0;
         listOfSemiSep[0] = strtok(line_read, ";\n");
-        while(listOfSemiSep[semiCnt] != NULL){
+        while (listOfSemiSep[semiCnt] != NULL)
+        {
             listOfSemiSep[++semiCnt] = strtok(NULL, ";\n");
         }
         // printf("%d\n", semiCnt);
-        for (int i =0; i< semiCnt; i++)
+        for (int i = 0; i < semiCnt; i++)
         {
             // printf("%s\n", listOfSemiSep[i]);
             int tknCnt = 0;
@@ -36,7 +40,7 @@ void loop(char home_dir[])
                 breaks[tknCnt++] = listOfSemiSep[i];
                 listOfSemiSep[i] = strtok(NULL, " \n");
             }
-            
+
             for (int i = 1; i < tknCnt; i++)
             {
                 par[i - 1] = breaks[i];

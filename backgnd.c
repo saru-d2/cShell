@@ -1,4 +1,5 @@
 #include "header.h"
+#include "JobStruct.h"
 
 void backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
 {

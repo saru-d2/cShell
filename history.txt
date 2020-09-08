@@ -1,0 +1,11 @@
+sdf
+ls
+ls
+ls
+ls
+s
+history
+mkdir
+chmod
+ls
+ls

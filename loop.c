@@ -13,13 +13,13 @@ void bgEnded()
 
 void loop(char home_dir[])
 {
+    historyInit();
     homeDir = home_dir;
     bool run = true;
     while (run)
     {
         //chk if anything ended..
         signal(SIGCHLD, bgEnded);
-        printf("back\n");
         print_PS1(home_dir);
         getline(&line_read, &zero, stdin);
         // line_tokenised = strtok(line_read, " \n");
@@ -48,6 +48,7 @@ void loop(char home_dir[])
             // printf("cmd: !%s!\n", cmd);
             int numPar = tknCnt - 1;
             bool done = false;
+
 
             if (strcmp(cmd, "quit") == 0)
             {
@@ -89,6 +90,11 @@ void loop(char home_dir[])
                 done = true;
             }
 
+            if (strcmp(cmd, "history") == 0){
+                printHis(numPar, par);
+                done = true;
+            }
+
             if (!done)
             {
                 if (numPar > 0 && strcmp(par[numPar - 1], "&") == 0)
@@ -96,6 +102,8 @@ void loop(char home_dir[])
                 else
                     foregnd(cmd, numPar, par);
             }
+
+            pushHisQ(cmd);
         }
     }
 }

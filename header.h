@@ -28,3 +28,7 @@ void clear();
 void pinfo();
 int strToNum();
 void bgProcessEnd();
+void historyInit();
+void printHis();
+void pushHisQ();
+void updateHistory();

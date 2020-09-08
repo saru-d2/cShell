@@ -31,7 +31,8 @@ void ls(char *par[], int numPar, char home_dir[])
         else
             dirList[dirNo++] = par[i];
     }
-    if (dirNo == 0){
+    if (dirNo == 0)
+    {
         dirNo++;
         dirList[0] = dot;
     }
@@ -50,6 +51,11 @@ void ls(char *par[], int numPar, char home_dir[])
         struct dirent **dirs;
         DIR *d;
         int cnt = scandir(dir, &dirs, NULL, alphasort);
+        printf("cnt: %d\n", cnt);
+        if (cnt < 0)
+        {
+            perror("ls");
+        }
         int numHardlinks, size;
         char fName[100000];
         struct stat s;

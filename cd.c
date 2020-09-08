@@ -25,12 +25,12 @@ void cd(int numPar, char *par[], char home_dir[])
         strcpy(path, temp);
         int valid = chdir(path);
         if (valid < 0){
-            perror("No such path/ directory");
+            perror("cd");
         }
         return;
     }
     int valid = chdir(path);
     if (valid < 0){
-        perror("No such path/ directory");
+        perror("cd");
     }
 }

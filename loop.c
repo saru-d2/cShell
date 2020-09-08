@@ -22,17 +22,14 @@ void loop(char home_dir[])
         signal(SIGCHLD, bgEnded);
         print_PS1(home_dir);
         getline(&line_read, &zero, stdin);
-        // line_tokenised = strtok(line_read, " \n");
         int semiCnt = 0;
         listOfSemiSep[0] = strtok(line_read, ";\n");
         while (listOfSemiSep[semiCnt] != NULL)
         {
             listOfSemiSep[++semiCnt] = strtok(NULL, ";\n");
         }
-        // printf("%d\n", semiCnt);
         for (int i = 0; i < semiCnt; i++)
         {
-            // printf("%s\n", listOfSemiSep[i]);
             int tknCnt = 0;
             cmd = breaks[0] = strtok(listOfSemiSep[i], " \t\n");
             while (listOfSemiSep[i] != NULL)
@@ -45,12 +42,11 @@ void loop(char home_dir[])
             {
                 par[i - 1] = breaks[i];
             }
-            // printf("cmd: !%s!\n", cmd);
             int numPar = tknCnt - 1;
             bool done = false;
 
 
-            if (strcmp(cmd, "quit") == 0)
+            if (strcmp(cmd, "quit") == 0 || strcmp(cmd, "exit") == 0)
             {
                 run = false;
                 done = true;

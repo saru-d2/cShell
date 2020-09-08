@@ -50,31 +50,24 @@ void pushHisQ(char st[])
 
 void historyInit()
 {
-    int fd = open("./history.txt", O_RDONLY, O_CREAT);
+    FILE* hisFile = fopen("./history.txt", "r");
     char cmd[1000];
-    if (fd < 0)
+    if (hisFile == NULL)
     {
         perror("History File: ");
         return;
     }
-    char buffer[1000];
-    read(fd, buffer, 1000);
-    // while (fgets(cmd, 1000, hisFile) != NULL)
-    // {
-    //     if (strcmp(cmdLine, "") == 0)
-    //         continue;
-    //     cmdLine = strtok(cmd, "\n");
-    //     puts(cmdLine);
-    //     pushHisQ(cmdLine);
-    // }
-    char *hisLines[20];
-    hisLines[0] = strtok(buffer, "\n");
-    int i =0;
-    while(hisLines[i] != NULL){
-        puts(hisLines[i]);
-        pushHisQ(hisLines[i]);
-        hisLines[++i] = strtok(NULL, "\n");
+    char *cmdLine;
+    while (fgets(cmd, 1000, hisFile) != NULL)
+    {
+       puts(cmd);
+        cmdLine = strtok(cmd, "\n");
+        if (strcmp(cmdLine, "") == 0)
+            continue;
+        puts(cmdLine);
+        pushHisQ(cmdLine);
     }
+
     updateHistory();
 }
 

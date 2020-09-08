@@ -14,6 +14,9 @@ void assignPermissions(char permissions[], struct stat s)
     s.st_mode &S_IXOTH ? strcat(permissions, "x") : strcat(permissions, "-");
 }
 
+int getBlkSizeLs(){
+
+}
 void ls(char *par[], int numPar, char home_dir[])
 {
     bool a = false, l = false;
@@ -62,6 +65,21 @@ void ls(char *par[], int numPar, char home_dir[])
         struct passwd *passUsr;
         struct group *grp;
         char permissions[100] = "", dateTime[50];
+        int total = 0;
+        for (int i =0; i<cnt; i++){
+            strcpy(fName, dirs[i]->d_name);
+            if (fName[0] == '.' && a == false)
+                continue;
+            char temp[100000];
+            strcpy(temp, dir);
+            strcat(temp, "/");
+            strcat(temp, fName);
+            stat(temp, &s);
+            total += s.st_blocks;
+        }
+        if (l){
+            printf("total: %d\n", total/2);
+        }
         for (int i = 0; i < cnt; i++)
         {
             strcpy(fName, dirs[i]->d_name);
@@ -80,6 +98,7 @@ void ls(char *par[], int numPar, char home_dir[])
             grp = getgrgid(s.st_gid);
             size = s.st_size;
             strftime(dateTime, 50, "%b %d\t%H:%M", localtime(&(s.st_ctime)));
+            
             if (l)
                 printf("%s\t%d\t%s\t%s\t%d\t%s\t", permissions, numHardlinks, passUsr->pw_name, grp->gr_name, size, dateTime);
             printf("%s\n", fName);

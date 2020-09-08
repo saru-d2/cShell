@@ -34,11 +34,11 @@ void loop(char home_dir[])
         {
             // printf("%s\n", listOfSemiSep[i]);
             int tknCnt = 0;
-            cmd = breaks[0] = strtok(listOfSemiSep[i], " \n");
+            cmd = breaks[0] = strtok(listOfSemiSep[i], " \t\n");
             while (listOfSemiSep[i] != NULL)
             {
                 breaks[tknCnt++] = listOfSemiSep[i];
-                listOfSemiSep[i] = strtok(NULL, " \n");
+                listOfSemiSep[i] = strtok(NULL, " \t\n");
             }
 
             for (int i = 1; i < tknCnt; i++)
@@ -102,7 +102,6 @@ void loop(char home_dir[])
                 else
                     foregnd(cmd, numPar, par);
             }
-
             pushHisQ(cmd);
         }
     }

@@ -1,5 +1,3 @@
-ps
-emacs
 vim
 vim
 ps
@@ -8,4 +6,6 @@ ps
 kill
 ps
 ls
-
+ls
+ls
+ls

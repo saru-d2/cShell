@@ -33,7 +33,7 @@ void pinfo(char *par[], int numPar, char home_dir[])
     FILE *fd = fopen(procFile, "r");
     if (fd == NULL)
     {
-        perror("Can't seem to find respective pid deirectory in proc");
+        perror("pinfo: /proc/../stat");
         return;
     }
     printf("pid -- %d\n", ID);

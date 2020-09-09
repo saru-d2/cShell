@@ -54,7 +54,6 @@ void ls(char *par[], int numPar, char home_dir[])
         struct dirent **dirs;
         DIR *d;
         int cnt = scandir(dir, &dirs, NULL, alphasort);
-        printf("cnt: %d\n", cnt);
         if (cnt < 0)
         {
             perror("ls");

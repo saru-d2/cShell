@@ -10,8 +10,8 @@
 #include <grp.h>
 #include <dirent.h>
 #include <stdlib.h>
+#include <stdlib.h>
 #include <sys/wait.h>
-
 
 
 
@@ -32,3 +32,6 @@ void historyInit();
 void printHis();
 void pushHisQ();
 void updateHistory();
+void nightswatch();
+void newBorn();
+void interr();

@@ -19,6 +19,7 @@ void updateHistory()
         write(fd, cmdLine, strlen(cmdLine));
         temp = temp->next;
     }
+    
 }
 
 void pushHisQ(char st[])
@@ -50,24 +51,26 @@ void pushHisQ(char st[])
 
 void historyInit()
 {
-    FILE* hisFile = fopen("./history.txt", "r");
+    FILE *hisFile = fopen("./history.txt", "rw");
     char cmd[1000];
     if (hisFile == NULL)
     {
         perror("History File: ");
+        printf("creating and changing permissions of file\n");
+        chmod("./history.txt", 0777);
         return;
     }
     char *cmdLine;
     while (fgets(cmd, 1000, hisFile) != NULL)
     {
-       puts(cmd);
         cmdLine = strtok(cmd, "\n");
-        if (strcmp(cmdLine, "") == 0)
+        if (cmdLine == NULL)
+        {
             continue;
-        puts(cmdLine);
+        }
         pushHisQ(cmdLine);
     }
-
+    fclose(hisFile);
     updateHistory();
 }
 

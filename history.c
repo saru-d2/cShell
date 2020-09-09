@@ -86,6 +86,7 @@ void printHis(int numPar, char *par[])
     {
         num = atoi(par[0]);
     }
+    if (num > size)num = size;
     historyNode *temp = head;
     int i = 0;
     while (temp != NULL && i < size)

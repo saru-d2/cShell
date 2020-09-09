@@ -12,8 +12,8 @@
 #include <stdlib.h>
 #include <stdlib.h>
 #include <sys/wait.h>
-
-
+// #include <sys/time.h>
+#include <sys/select.h>
 
 void loop();      //main loop..
 void print_PS1(); //print the PS1..

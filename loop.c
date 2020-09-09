@@ -18,7 +18,6 @@ void loop(char home_dir[])
     bool run = true;
     while (run)
     {
-        printf("loop\n");
         //chk if anything ended..
         signal(SIGCHLD, bgEnded);
         print_PS1(home_dir);

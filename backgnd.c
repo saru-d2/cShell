@@ -29,7 +29,7 @@ void backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
         if (exret < 0)
         {
             perror("process failed");
-            return;
+            exit(EXIT_FAILURE);
         }
     }
     else

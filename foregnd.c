@@ -19,8 +19,8 @@ void foregnd(char cmd[], int numPar, char *par[])
         int xvpret = execvp(cmd, args);
         if (xvpret < 0){
             perror("Error: command not found");
+            exit(EXIT_FAILURE);
         }
-        return;
     }
     else {
         int status;

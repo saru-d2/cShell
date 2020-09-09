@@ -5,10 +5,9 @@ void bgProcessEnd(job *jobArr, int jobIter, char *home_dir)
 {
     pid_t pid;
     int stat;
-    pid = waitpid(-1, &stat, 1);
+    pid = waitpid(-1, &stat, WNOHANG);
     if (pid < 0)
     {
-        perror("Error: waitPid returned negative value");
         return;
     }
     //debugging

@@ -33,7 +33,6 @@ void loop(char home_dir[])
         {
             int tknCnt = 0;
             cmd = breaks[0] = strtok(listOfSemiSep[i], " \t\n");
-            strcat(cmdLine, cmd);
             while (listOfSemiSep[i] != NULL)
             {
                 breaks[tknCnt++] = listOfSemiSep[i];

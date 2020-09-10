@@ -12,7 +12,7 @@ void cd(int numPar, char *par[], char home_dir[])
     }
     char path[100000], temp[100000];
     strcpy(path, par[0]);
-    printf("%s\n", path);
+    // printf("%s\n", path);
     if (path[0] == '~'){
         strcpy(temp, home_dir);
         int pathln = strlen(path);
@@ -21,7 +21,7 @@ void cd(int numPar, char *par[], char home_dir[])
             temp[homeln+i-1] = path[i];
         }
         temp[homeln + pathln -1] = '\0';
-        printf("%s\n", temp);
+        // printf("%s\n", temp);
         strcpy(path, temp);
         int valid = chdir(path);
         if (valid < 0){

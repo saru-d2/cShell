@@ -92,7 +92,7 @@ void newBorn(int timeInt)
     bool run = true;
     int i = 0;
     int pid;
-    printf("in newborn\n");
+    // printf("in newborn\n");
     while (run)
     {
         FILE *fd = fopen("/proc/loadavg", "r");

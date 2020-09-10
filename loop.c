@@ -22,7 +22,6 @@ void loop(char home_dir[])
         signal(SIGCHLD, bgEnded);
         print_PS1(home_dir);
         getline(&line_read, &zero, stdin);
-        strcpy(cmdLine, line_read);
         int semiCnt = 0;
         listOfSemiSep[0] = strtok(line_read, ";\n");
         while (listOfSemiSep[semiCnt] != NULL)
@@ -31,8 +30,10 @@ void loop(char home_dir[])
         }
         for (int i = 0; i < semiCnt; i++)
         {
+            strcpy(cmdLine, "");
             int tknCnt = 0;
             cmd = breaks[0] = strtok(listOfSemiSep[i], " \t\n");
+            strcat(cmdLine, cmd);
             while (listOfSemiSep[i] != NULL)
             {
                 breaks[tknCnt++] = listOfSemiSep[i];
@@ -42,6 +43,8 @@ void loop(char home_dir[])
             for (int i = 1; i < tknCnt; i++)
             {
                 par[i - 1] = breaks[i];
+                strcat(cmdLine, " ");
+                strcat(cmdLine, par[i-1]);
             }
             int numPar = tknCnt - 1;
             bool done = false;

@@ -24,6 +24,7 @@ void updateHistory()
 
 void pushHisQ(char st[])
 {
+    // printf("%s\n", st);
     historyNode *temp = (historyNode *)malloc(sizeof(historyNode));
     temp->next = NULL;
     temp->prev = NULL;

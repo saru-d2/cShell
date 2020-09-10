@@ -77,7 +77,7 @@ void interr(int timeInt)
             }
             printf("\n");
         }
-        
+
         if (qPressed())
             return;
         sleep(timeInt);
@@ -91,16 +91,23 @@ void newBorn(int timeInt)
 {
     bool run = true;
     int i = 0;
+    int pid;
     printf("in newborn\n");
     while (run)
     {
-        char *a = getenv("$!");
-        if (a != NULL)
-            ;
-        printf("%s\n", a);
+        FILE *fd = fopen("/proc/loadavg", "r");
+        if (fd == NULL)
+        {
+            perror("Nightswatch newborn read /proc/loadavg");
+        }
+        fscanf(fd, "%*s %*s %*s %*s %d", &pid);
+        printf("%d\n", pid);
+        if (qPressed())
+            break;
         sleep(timeInt);
-        if (++i == 5)
-            run = false;
+        if (qPressed())
+            break;
+        fclose(fd);
     }
 }
 
@@ -131,7 +138,6 @@ void nightswatch(int numPar, char *par[])
     }
     else if (numPar == 1)
     {
-        printf(":(\n");
         if (strcmp(par[0], "interrupt") == 0)
         {
             interr(1);

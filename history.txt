@@ -1,2 +1,7 @@
 history
 history 3
+nightswatch newborn
+nightswatch newborn
+nightswatch interrupt
+mkdir a
+rm -rf a

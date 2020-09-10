@@ -19,7 +19,7 @@ all the headers are in header.h
 
 The shell prompt includes the username and system name along with the pwd relative to the address the shell runs from (hereafter reffered to as home_dir)
 
-cd works with '.', '..', '~' and ralative/ absolute paths.
+cd works with '.', '..', '~' and relative/ absolute paths.
 
 ls works with any permutations of the flags -a and -l. It also supports multiple arguments.
 

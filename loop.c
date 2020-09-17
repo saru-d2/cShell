@@ -44,61 +44,52 @@ void loop(char home_dir[])
                 par[i - 1] = breaks[i];
             }
             int numPar = tknCnt - 1;
-            bool done = false;
 
             if (strcmp(cmd, "quit") == 0 || strcmp(cmd, "exit") == 0)
             {
                 run = false;
-                done = true;
                 break;
             }
-            if (strcmp(cmd, "clear") == 0)
+            else if (strcmp(cmd, "clear") == 0)
             {
                 clear();
             }
-            if (strcmp(cmd, "cd") == 0)
+            else if (strcmp(cmd, "cd") == 0)
             {
                 cd(numPar, par, home_dir);
-                done = true;
             }
 
-            if (strcmp(cmd, "pwd") == 0)
+            else if (strcmp(cmd, "pwd") == 0)
             {
                 pwd();
-                done = true;
             }
 
-            if (strcmp(cmd, "echo") == 0)
+            else if (strcmp(cmd, "echo") == 0)
             {
                 echo(par, numPar);
-                done = true;
             }
 
-            if (strcmp(cmd, "ls") == 0)
+            else if (strcmp(cmd, "ls") == 0)
             {
                 ls(par, numPar, home_dir);
-                done = true;
             }
 
-            if (strcmp(cmd, "pinfo") == 0)
+            else if (strcmp(cmd, "pinfo") == 0)
             {
                 pinfo(par, numPar, home_dir);
-                done = true;
             }
 
-            if (strcmp(cmd, "history") == 0)
+            else if (strcmp(cmd, "history") == 0)
             {
                 printHis(numPar, par);
-                done = true;
             }
 
-            if (strcmp(cmd, "nightswatch") == 0)
+            else if (strcmp(cmd, "nightswatch") == 0)
             {
                 nightswatch(numPar, par);
-                done = true;
             }
-
-            if (!done)
+            
+            else 
             {
                 if (numPar > 0 && strcmp(par[numPar - 1], "&") == 0)
                     backgnd(cmd, numPar, par, jobArr, &jobIter);

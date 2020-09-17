@@ -2,18 +2,14 @@
 
 void print_PS1(char home_dir[])
 {
-    char user[100000], cwd[100000], hostName[100000];
+    char user[10000], cwd[10000], hostName[10000];
     getlogin_r(user, sizeof(user));
     getcwd(cwd, sizeof(cwd));
     gethostname(hostName, sizeof(hostName));
-    char ret[300000];
-    strcpy(ret, "<");
-    strcat(ret, user);
-    strcat(ret, "@");
-    strcat(ret, hostName);
-    strcat(ret, ":");
+    char addr[10000];
+    strcpy(addr, "");
     if (strcmp(cwd, home_dir) == 0) // if its at "home"
-        strcat(ret, "~");
+        strcat(addr, "~");
     else
     {
         bool e = true;
@@ -38,14 +34,12 @@ void print_PS1(char home_dir[])
                 path[ind++] = cwd[i];
             }
             path[ind] = '\0';
-            strcat(ret, path);
+            strcat(addr, path);
         }
         else
         {
-            strcat(ret, cwd);
+            strcat(addr, cwd);
         }
     }
-    strcat(ret, ">");
-    ret[strlen(ret)] = '\0';
-    printf("%s ", ret);
+    printf("<" TANGO_GREEN "%s@%s" TANGO_WHITE ":" TANGO_CYAN "%s" TANGO_WHITE "> ", user, hostName, addr);
 }

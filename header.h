@@ -45,3 +45,4 @@ void updateHistory();
 void nightswatch();
 void newBorn();
 void interr();
+bool noPipe();

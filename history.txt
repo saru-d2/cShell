@@ -1,11 +1,13 @@
-vim&
-vim&
-vim&
-vim &
-vim &
-vim&
 vim &
 vim 1.txt&
 &
 quit
+ls
+ls -al
+vi&
+vi&
+emacs&
+quit
+
+
 

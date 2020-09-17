@@ -1,5 +1,11 @@
-cd ..
-ccShe
-cd cShell
-ls
-ls
+vim&
+vim&
+vim&
+vim &
+vim &
+vim&
+vim &
+vim 1.txt&
+&
+quit
+

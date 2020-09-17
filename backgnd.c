@@ -3,7 +3,9 @@
 
 void backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
 {
-    numPar--;
+    // printf("in bgrnd\n");
+    fflush(NULL);
+   
     pid_t pid, childP;
     char *args[numPar + 5];
     // strcpy(args[0], cmd);
@@ -14,6 +16,12 @@ void backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
         args[i + 1] = par[i];
     }
     fflush(NULL);
+    if (strcmp(args[numPar] , "&") == 0){
+        args[numPar] = NULL;
+    }
+    else {
+        args[numPar][strlen(args[numPar]) - 1] = '\0';
+    }
     args[numPar + 1] = NULL;
     int exret = 1;
     pid = fork();

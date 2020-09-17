@@ -88,10 +88,17 @@ void loop(char home_dir[])
             {
                 nightswatch(numPar, par);
             }
-            
-            else 
+
+            else
             {
-                if (numPar > 0 && strcmp(par[numPar - 1], "&") == 0)
+                char c;
+                if (numPar == 0)
+                {
+                    c = cmd[strlen(cmd) - 1];
+                }
+                else
+                    c = par[numPar - 1][strlen(par[numPar - 1]) - 1];
+                if (c == '&')
                     backgnd(cmd, numPar, par, jobArr, &jobIter);
                 else
                     foregnd(cmd, numPar, par);

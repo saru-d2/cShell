@@ -46,3 +46,5 @@ void nightswatch();
 void newBorn();
 void interr();
 bool noPipe();
+bool pipeChk();
+bool Pipe();

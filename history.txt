@@ -1,13 +1,10 @@
-vim &
-vim 1.txt&
-&
-quit
-ls
-ls -al
-vi&
-vi&
-emacs&
-quit
-
-
-
+vi 1.txt
+vim 1.txt
+vim 1.txt
+cat 1.txt; history
+cat 1.txt; history |
+cat ls.c ; cat histoey |
+ls > 1.txt
+ > 1.txt
+ls > 1.txt
+t

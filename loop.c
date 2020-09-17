@@ -21,6 +21,7 @@ void loop(char home_dir[])
     {
         //chk if anything ended..
         signal(SIGCHLD, bgEnded);
+        //
         print_PS1(home_dir);
         getline(&line_read, &zero, stdin);
         strcpy(cmdLine, line_read);
@@ -32,8 +33,14 @@ void loop(char home_dir[])
         }
         for (int i = 0; i < semiCnt; i++)
         {
-            run = noPipe(listOfSemiSep[i], home_dir, jobArr, &jobIter);
-            if (!run)break;
+            if (!pipeChk(listOfSemiSep[i]))
+            {
+                run = noPipe(listOfSemiSep[i], home_dir, jobArr, &jobIter);
+            }
+            else
+                run = Pipe(listOfSemiSep[i], home_dir, jobArr, &jobIter);
+            if (!run)
+                break;
         }
         pushHisQ(cmdLine);
     }

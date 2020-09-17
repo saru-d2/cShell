@@ -14,7 +14,7 @@ void updateHistory()
     while (temp != NULL)
     {
         // printf("%s\n", temp->cmd);
-        cmdLine = strtok(temp->cmd, "\n");
+        cmdLine = strtok(temp->hisLine, "\n");
         strcat(cmdLine, "\n");
         write(fd, cmdLine, strlen(cmdLine));
         temp = temp->next;
@@ -28,7 +28,7 @@ void pushHisQ(char st[])
     historyNode *temp = (historyNode *)malloc(sizeof(historyNode));
     temp->next = NULL;
     temp->prev = NULL;
-    strcpy(temp->cmd, st);
+    strcpy(temp->hisLine, st);
     size++;
     if (head == NULL)
     {
@@ -93,7 +93,7 @@ void printHis(int numPar, char *par[])
     while (temp != NULL && i < size)
     {
         if (size - i <= num)
-            printf("%s\n", strtok(temp->cmd, "\n"));
+            printf("%s\n", strtok(temp->hisLine, "\n"));
         temp = temp->next;
         i++;
     }

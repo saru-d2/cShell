@@ -1,10 +1,19 @@
-kjhkjhds|sdD|F|fsd
-udhsuhds |dslihdsfhsfd|dsflsdf
-khbdsfsdf|DSf|dsf|fds
-ljsdlksfd|sd|sd
-|fds
-jhbsdjhb dfs|sdfkjdskjfds|fsdjsdf
-kdjskjdsf|kjhdsfkjdsf|ljsdkjfn
-dskhbkdsjds|dsfsdf|sdfsfd|
-dsfdsf|dsfsdf|sdfsdf||
-sdfsdf|sdf|sdf|fds|fds\
+ksfhu f|kdsjhbskdj 
+| ushgusdh
+usdh
+sort < 1.txt > 2.txt
+ls > 1.txt
+ls > 1.txt
+ls > 1.txt
+ls >> 1.txt
+ls > 1.txt
+git commit -a -m "fixing noPipe"
+hgusdh
+bskdj 
+
+d |k dskjh dskj sd
+kdj 
+| ushgusdh
+ksfhu f|kdsjhbskdj 
+| ushgusdh
+usdh

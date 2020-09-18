@@ -22,6 +22,7 @@ void foregnd(char cmd[], int numPar, char *par[])
             perror("Error: command not found");
             exit(EXIT_FAILURE);
         }
+        fflush(NULL);
     }
     else {
         int status;

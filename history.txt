@@ -1,10 +1,21 @@
-vi 1.txt
-vim 1.txt
-vim 1.txt
-cat 1.txt; history
-cat 1.txt; history |
-cat ls.c ; cat histoey |
-ls > 1.txt
- > 1.txt
-ls > 1.txt
 t
+emacs
+txt
+ < 1.txt
+emacs
+txt
+sort < 1.txt
+ls > 1.txt
+ls >> 1.txt
+cat 1.txt
+xt
+
+ 1.txt
+xt
+ < 1.txt
+t
+emacs
+txt
+ < 1.txt
+emacs
+txt

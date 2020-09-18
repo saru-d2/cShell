@@ -70,14 +70,14 @@ bool noPipe(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
         }
         else
         {
-            strcpy(par[numPar++], breaks[i]);
+            par[numPar++] = breaks[i];
         }
     }
 
     if (strcmp(cmd, "quit") == 0 || strcmp(cmd, "exit") == 0)
     {
-        dup2(STDIN_FILENO, oldStdin);
-        dup2(STDOUT_FILENO, oldStdin);
+        dup2(oldStdin, STDIN_FILENO);
+        dup2(oldStdin, STDOUT_FILENO);
         return false;
     }
     else if (strcmp(cmd, "clear") == 0)
@@ -110,7 +110,7 @@ bool noPipe(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
         else
             foregnd(cmd, numPar, par);
     }
-    dup2(STDIN_FILENO, oldStdin);
-    dup2(STDOUT_FILENO, oldStdin);
+    dup2(oldStdin, STDIN_FILENO);
+    dup2(oldStdin, STDOUT_FILENO);
     return true;
 }

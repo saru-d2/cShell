@@ -14,9 +14,6 @@ void assignPermissions(char permissions[], struct stat s)
     s.st_mode &S_IXOTH ? strcat(permissions, "x") : strcat(permissions, "-");
 }
 
-int getBlkSizeLs(){
-
-}
 void ls(char *par[], int numPar, char home_dir[])
 {
     bool a = false, l = false;

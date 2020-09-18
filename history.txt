@@ -1,21 +1,10 @@
-t
-emacs
-txt
- < 1.txt
-emacs
-txt
-sort < 1.txt
-ls > 1.txt
-ls >> 1.txt
-cat 1.txt
-xt
-
- 1.txt
-xt
- < 1.txt
-t
-emacs
-txt
- < 1.txt
-emacs
-txt
+kjhkjhds|sdD|F|fsd
+udhsuhds |dslihdsfhsfd|dsflsdf
+khbdsfsdf|DSf|dsf|fds
+ljsdlksfd|sd|sd
+|fds
+jhbsdjhb dfs|sdfkjdskjfds|fsdjsdf
+kdjskjdsf|kjhdsfkjdsf|ljsdkjfn
+dskhbkdsjds|dsfsdf|sdfsfd|
+dsfdsf|dsfsdf|sdfsdf||
+sdfsdf|sdf|sdf|fds|fds\

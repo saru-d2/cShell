@@ -2,7 +2,7 @@
 #include "JobStruct.h"
 char *line_read, *listOfSemiSep[1000], cmdLine[1000];
 // char *breaks[1000], *cmd, *par[1000];
-ssize_t zero = 0;
+size_t zero = 0;
 job jobArr[100000];
 int jobIter = 0;
 char *homeDir;

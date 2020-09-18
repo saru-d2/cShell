@@ -1,13 +1,19 @@
+e"
+hgusdh
+bskdj 
+d |k dskjh dskj sd
+kdj 
+| ushgusdh
 ksfhu f|kdsjhbskdj 
 | ushgusdh
 usdh
-sort < 1.txt > 2.txt
-ls > 1.txt
-ls > 1.txt
-ls > 1.txt
-ls >> 1.txt
-ls > 1.txt
-git commit -a -m "fixing noPipe"
+sort < 1.txt  > 2.txt
+txt
+hgusdh
+> 1.txt
+hgusdh
+skj sd
+e"
 hgusdh
 bskdj 
 

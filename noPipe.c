@@ -12,10 +12,10 @@ int redirectedSym(char *st)
     return 0;
 }
 
-bool flags[3] = {0, 0, 0};
 char *cmd, *breaks[1000], *par[1000];
 bool noPipe(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
 {
+    bool flags[3] = {0, 0, 0};
     int tknCnt = 0;
     cmd = breaks[0] = strtok(line, " \t\r\n");
     while (line != NULL)
@@ -25,12 +25,6 @@ bool noPipe(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
     }
     int oldStdin = dup(STDIN_FILENO);
     int oldStdout = dup(STDOUT_FILENO);
-    // for (int i = 1; i < tknCnt; i++)
-    // {
-    //     par[i - 1] = breaks[i];
-    // }
-    // int numPar = tknCnt - 1;
-
     int numPar = 0;
     for (int i = 1; i < tknCnt; i++)
     {
@@ -48,21 +42,25 @@ bool noPipe(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
                     continue;
 
                 flags[b - 1] = true;
-                //flagStuffhere...
-                if (b == 1) //<
+                if (b == 1) // <
                 {
-                    int inFdr = open(breaks[i], O_RDONLY);
+                    int inFdr = open(breaks[i], O_RDONLY);  
                     dup2(inFdr, STDIN_FILENO);
+                    close(inFdr);
+
                 }
                 else if (b == 2) // >
                 {
                     int outFdr = open(breaks[i], O_WRONLY | O_CREAT | O_TRUNC);
+                    printf("@%d\n@", outFdr);
                     dup2(outFdr, STDOUT_FILENO);
+                    close(outFdr);
                 }
-                else //>>
+                else // >>
                 {
                     int outFdr = open(breaks[i], O_WRONLY | O_CREAT | O_APPEND);
                     dup2(outFdr, STDOUT_FILENO);
+                    close(outFdr);
                 }
             }
             else
@@ -72,6 +70,8 @@ bool noPipe(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
         {
             par[numPar++] = breaks[i];
         }
+        
+
     }
 
     if (strcmp(cmd, "quit") == 0 || strcmp(cmd, "exit") == 0)
@@ -112,5 +112,6 @@ bool noPipe(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
     }
     dup2(oldStdin, STDIN_FILENO);
     dup2(oldStdin, STDOUT_FILENO);
+    printf("done\n");
     return true;
 }

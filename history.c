@@ -41,7 +41,7 @@ void pushHisQ(char st[])
         tail->next = temp;
         tail = temp;
     }
-    while (size > 10)
+    while (size > 20)
     {
         head = head->next;
         head->prev = NULL;

@@ -52,7 +52,7 @@ bool noPipe(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
                 else if (b == 2) // >
                 {
                     int outFdr = open(breaks[i], O_WRONLY | O_CREAT | O_TRUNC);
-                    printf("@%d\n@", outFdr);
+                    // printf("@%d\n@", outFdr);
                     dup2(outFdr, STDOUT_FILENO);
                     close(outFdr);
                 }

@@ -1,43 +1,25 @@
-j 
-j 
-c
-ls
+usdh
+ls | grep *.txt
 h
-gusdh
-jhbskdj 
-c
-dh
-dj 
-| ushgusdh
-h
-20
-sdh
-gusdh
 h
 ksfhu f|kdsjhbskdj 
 | ushgusdh
 usdh
-grep "c" loop.c
-
- 
-ushgusdh
-j 
-j 
-c
-
-ls
-h
-gusdh
-jhbskdj 
-c
-dh
-dj 
+kdj 
 | ushgusdh
 h
+h
+h
+ksfhu f|kdsjhbskdj 
+| ushgusdh
+usdh
+ls > 1.txt
+grep *.txt 1.txt
+grep txt 1.txt
+grep -i *.txt 1.txt
+quit
+1.txt
 
-20
-sdh
-gusdh
 h
 ksfhu f|kdsjhbskdj 
 | ushgusdh

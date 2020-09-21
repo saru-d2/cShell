@@ -9,3 +9,4 @@ bool pipeChk(char *cmdLine)
     }
     return false;
 }
+

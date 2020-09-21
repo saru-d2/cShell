@@ -2,7 +2,9 @@
 
 void foregnd(char cmd[], int numPar, char *par[])
 {
-    puts(cmd);
+    // printf("wow %s\n\n", cmd);
+    // write(2, cmd, strlen(cmd));
+    // write(2, "\n", strlen("\n"));
     char *args[numPar + 5];
     args[0] = cmd;
     for (int i = 0; i < numPar; i++)

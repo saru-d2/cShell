@@ -35,7 +35,7 @@ void loop(char home_dir[])
         {
             if (!pipeChk(listOfSemiSep[i]))
             {
-                run = noPipe(listOfSemiSep[i], home_dir, jobArr, &jobIter);
+                run = execCmd(listOfSemiSep[i], home_dir, jobArr, &jobIter);
             }
             else
                 run = Pipe(listOfSemiSep[i], home_dir, jobArr, &jobIter);

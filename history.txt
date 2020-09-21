@@ -1,26 +1,49 @@
+h
+sdh
+h
+sdh
 usdh
-ls | grep *.txt
-h
-h
-ksfhu f|kdsjhbskdj 
-| ushgusdh
+ls | grep
+sdh
+gusdh
+dh
+sdh
+hgusdh
+s | grep
 usdh
-kdj 
-| ushgusdh
-h
-h
-h
-ksfhu f|kdsjhbskdj 
-| ushgusdh
+shgusdh
+sdh
+hgusdh
+gusdh
+sdh
 usdh
-ls > 1.txt
-grep *.txt 1.txt
-grep txt 1.txt
-grep -i *.txt 1.txt
-quit
-1.txt
+ls | grep txt
+h
+h
 
+gusdh
 h
-ksfhu f|kdsjhbskdj 
-| ushgusdh
+
+t
+h
+h
+sdh
+h
+
+sdh
+usdh
+ls | grep
+sdh
+
+gusdh
+dh
+sdh
+hgusdh
+s | grep
+usdh
+shgusdh
+sdh
+hgusdh
+gusdh
+sdh
 usdh

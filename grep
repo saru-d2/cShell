@@ -1,13 +1,14 @@
 1.txt
-2.txt
 JobStruct.h
 LICENSE
 Makefile
 Pipe.c
+Pipe.old
 README.md
 backgnd.c
 bgProcessEnd.c
 cShell.c
+cd
 cd.c
 clear.c
 csh
@@ -25,4 +26,3 @@ pinfo.c
 pipeChk.c
 print_PS1.c
 pwd.c
-wc

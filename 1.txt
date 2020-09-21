@@ -1,5 +1,4 @@
 1.txt
-2.txt
 JobStruct.h
 LICENSE
 Makefile
@@ -23,7 +22,6 @@ loop.c
 ls.c
 nightswatch.c
 noPipe.c
-out.txt
 pinfo.c
 pipeChk.c
 print_PS1.c

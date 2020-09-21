@@ -45,6 +45,6 @@ void updateHistory();
 void nightswatch();
 void newBorn();
 void interr();
-bool noPipe();
+bool execCmd();
 bool pipeChk();
 bool Pipe();

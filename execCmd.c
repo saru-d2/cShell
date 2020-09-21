@@ -12,9 +12,13 @@ int redirectedSym(char *st)
     return 0;
 }
 
-char *cmd, *breaks[1000], *par[1000];
-bool noPipe(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
+bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
 {
+    char *cmd, *breaks[1000], *par[1000];
+    // write(2, "!", strlen("!"));
+    // write(2, line, strlen(line));
+    // write(2, "!\n", strlen("!\n"));
+    fflush(NULL);
     bool flags[3] = {0, 0, 0};
     int tknCnt = 0;
     cmd = breaks[0] = strtok(line, " \t\r\n");
@@ -51,14 +55,14 @@ bool noPipe(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
                 }
                 else if (b == 2) // >
                 {
-                    int outFdr = open(breaks[i], O_WRONLY | O_CREAT | O_TRUNC);
+                    int outFdr = open(breaks[i], O_WRONLY | O_CREAT | O_TRUNC, 0664);
                     // printf("@%d\n@", outFdr);
                     dup2(outFdr, STDOUT_FILENO);
                     close(outFdr);
                 }
                 else // >>
                 {
-                    int outFdr = open(breaks[i], O_WRONLY | O_CREAT | O_APPEND);
+                    int outFdr = open(breaks[i], O_WRONLY | O_CREAT | O_APPEND, 0664);
                     dup2(outFdr, STDOUT_FILENO);
                     close(outFdr);
                 }
@@ -113,5 +117,8 @@ bool noPipe(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
     dup2(oldStdin, STDIN_FILENO);
     dup2(oldStdin, STDOUT_FILENO);
     // printf("done\n");
+    close(oldStdout);
+    close(oldStdin);
+    write(2, "done\n", strlen("done\n"));
     return true;
 }

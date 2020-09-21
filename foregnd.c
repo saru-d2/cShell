@@ -3,8 +3,8 @@
 void foregnd(char cmd[], int numPar, char *par[])
 {
     // printf("wow %s\n\n", cmd);
-    // write(2, cmd, strlen(cmd));
-    // write(2, "\n", strlen("\n"));
+    write(2, cmd, strlen(cmd));
+    write(2, "!!\n", strlen("!!\n"));
     char *args[numPar + 5];
     args[0] = cmd;
     for (int i = 0; i < numPar; i++)
@@ -28,6 +28,8 @@ void foregnd(char cmd[], int numPar, char *par[])
     }
     else {
         int status;
-        waitpid(pid, &status, WUNTRACED);
+        pid_t waitRet = waitpid(pid, &status, WUNTRACED);
+        write(2, "doneFork\n", strlen("doneFork\n"));
     }
+    write(2, "doneEx\n", strlen("doneEx\n"));
 }

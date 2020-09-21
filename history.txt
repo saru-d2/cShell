@@ -1,23 +1,41 @@
-hgusdh
-bskdj 
-d |k dskjh dskj sd
-kdj 
+j 
+j 
+c
+ls
+h
+gusdh
+jhbskdj 
+c
+dh
+dj 
 | ushgusdh
-ksfhu f|kdsjhbskdj 
-| ushgusdh
-usdh
-history
-history
-history
-history
-hgusdh
-usdh
+h
+20
+sdh
 gusdh
 h
 ksfhu f|kdsjhbskdj 
 | ushgusdh
 usdh
-history 20
+grep "c" loop.c
+
+ 
+ushgusdh
+j 
+j 
+c
+
+ls
+h
+gusdh
+jhbskdj 
+c
+dh
+dj 
+| ushgusdh
+h
+
+20
 sdh
 gusdh
 h

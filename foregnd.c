@@ -2,6 +2,7 @@
 
 void foregnd(char cmd[], int numPar, char *par[])
 {
+    puts(cmd);
     char *args[numPar + 5];
     args[0] = cmd;
     for (int i = 0; i < numPar; i++)

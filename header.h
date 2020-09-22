@@ -46,5 +46,6 @@ void nightswatch();
 void newBorn();
 void interr();
 bool execCmd();
+void jobs();
 bool pipeChk();
 bool Pipe();

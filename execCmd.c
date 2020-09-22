@@ -100,6 +100,8 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
         printHis(numPar, par);
     else if (strcmp(cmd, "nightswatch") == 0)
         nightswatch(numPar, par);
+    else if (strcmp(cmd, "jobs") == 0)
+        jobs(numPar, par);
     else
     {
         char c;
@@ -112,7 +114,7 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
         if (c == '&')
             backgnd(cmd, numPar, par, jobArr, jobIterPtr);
         else
-            foregnd(cmd, numPar, par);
+            foregnd(cmd, numPar, par, jobArr, jobIterPtr);
     }
     dup2(oldStdin, STDIN_FILENO);
     dup2(oldStdin, STDOUT_FILENO);

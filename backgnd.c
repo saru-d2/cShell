@@ -42,10 +42,18 @@ void backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
     }
     else
     {
-        printf("[%d] %d %s\n", *jobIter + 1, pid, cmd);
+        char toJobArr[1000];
+        int i =0;
+        strcpy(toJobArr, "");
+        while(args[i] != NULL){
+            strcat(toJobArr, args[i]);
+            strcat(toJobArr, " ");
+            i++;
+        }
         jobArray[(*jobIter)].id = pid;
-        strcpy(jobArray[(*jobIter)].name, cmd);
+        strcpy(jobArray[(*jobIter)].name, toJobArr);
         *jobIter += 1;
+        printf("[%d] %d %s\n", *jobIter + 1, pid, toJobArr);
     }
     return;
 }

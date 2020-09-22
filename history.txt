@@ -17,11 +17,15 @@ hgusdh
 gusdh
 sdh
 usdh
-ls | grep txt
+vim 1.txt &
+
 h
+t
 h
 
-gusdh
+t
+h
+
 h
 
 t

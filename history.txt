@@ -1,53 +1,31 @@
-h
-sdh
-h
-sdh
-usdh
-ls | grep
-sdh
-gusdh
-dh
-sdh
-hgusdh
-s | grep
-usdh
-shgusdh
-sdh
-hgusdh
-gusdh
-sdh
-usdh
+vim 2.txt &
+macs &
+obs
+txt &
 vim 1.txt &
+vim 2.txt &
+emacs 2.txt &
+jobs
+.txt &
+s
+macs &
+cs &
+obs
+txt &
+vim 1,txt
+vim 1.txt &
+vim 2.txt &
+emacs 3.txt &
+jobs
+jobs
+ &
 
-h
-t
-h
+bs
+.txt &
+.txt &
+s
 
-t
-h
-
-h
-
-t
-h
-h
-sdh
-h
-
-sdh
-usdh
-ls | grep
-sdh
-
-gusdh
-dh
-sdh
-hgusdh
-s | grep
-usdh
-shgusdh
-sdh
-hgusdh
-gusdh
-sdh
-usdh
+macs &
+cs &
+obs
+txt &

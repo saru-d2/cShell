@@ -25,9 +25,11 @@ void bgProcessEnd(job *jobArr, int jobIter, char *home_dir)
             //
             int xStat = WEXITSTATUS(stat);
             if (xStat == 0)
-                printf("exited normally\n");
+                printf("exitted normally\n");
             else
-                printf("exited with some errors\n");
+                printf("exitted with some errors\n");
+
+            jobArr[i].running = false;
             print_PS1(home_dir);
             fflush(NULL);
             break;

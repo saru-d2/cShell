@@ -29,7 +29,7 @@ void foregnd(char cmd[], int numPar, char *par[])
     else {
         int status;
         pid_t waitRet = waitpid(pid, &status, WUNTRACED);
-        write(2, "doneFork\n", strlen("doneFork\n"));
+        // write(2, "doneFork\n", strlen("doneFork\n"));
     }
-    write(2, "doneEx\n", strlen("doneEx\n"));
+    // write(2, "doneEx\n", strlen("doneEx\n"));
 }

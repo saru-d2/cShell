@@ -101,7 +101,7 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
     else if (strcmp(cmd, "nightswatch") == 0)
         nightswatch(numPar, par);
     else if (strcmp(cmd, "jobs") == 0)
-        jobs(numPar, par);
+        jobs(numPar, par, jobArr, jobIterPtr);
     else
     {
         char c;
@@ -121,6 +121,6 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
     // printf("done\n");
     close(oldStdout);
     close(oldStdin);
-    write(2, "done\n", strlen("done\n"));
+    // write(2, "done\n", strlen("done\n"));
     return true;
 }

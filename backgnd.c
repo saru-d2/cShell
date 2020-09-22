@@ -3,7 +3,7 @@
 
 void backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
 {
-    // printf("in bgrnd\n");
+    printf("in bgrnd %d\n", *jobIter);
     fflush(NULL);
    
     pid_t pid, childP;
@@ -52,8 +52,9 @@ void backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
         }
         jobArray[(*jobIter)].id = pid;
         strcpy(jobArray[(*jobIter)].name, toJobArr);
+        jobArray[(*jobIter)].running = true;
         *jobIter += 1;
-        printf("[%d] %d %s\n", *jobIter + 1, pid, toJobArr);
+        printf("[%d] %d %s\n", *jobIter, pid, toJobArr);
     }
     return;
 }

@@ -1,6 +1,6 @@
 typedef struct job
 {
-    int id;
+    pid_t id;
     char name[1000];
     bool running;
 } job;

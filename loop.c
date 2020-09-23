@@ -9,6 +9,7 @@ char *homeDir;
 
 void bgEnded()
 {
+    // printf("some task ended\n");
     bgProcessEnd(jobArr, jobIter, homeDir);
 }
 

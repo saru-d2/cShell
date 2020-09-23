@@ -102,6 +102,12 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
         nightswatch(numPar, par);
     else if (strcmp(cmd, "jobs") == 0)
         jobs(numPar, par, jobArr, jobIterPtr);
+    else if (strcmp(cmd, "unsetenv") == 0)
+        unSetVar(numPar, par);
+    else if (strcmp(cmd, "setenv") == 0)
+        setVar(numPar, par);
+    else if (strcmp(cmd, "kjob") == 0)
+        kjob(numPar, par, jobArr, jobIterPtr);
     else
     {
         char c;

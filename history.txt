@@ -1,22 +1,42 @@
-vim 2.txt &
-macs &
+ &
 obs
-txt &
-vim 1.txt &
-vim 2.txt &
-emacs 2.txt &
 jobs
+obs
+&
+&
+.txt &
+obs
+jobs
+ &
+bs
+.txt &
 .txt &
 s
 macs &
 cs &
 obs
 txt &
-vim 1,txt
-vim 1.txt &
-vim 2.txt &
-emacs 3.txt &
+emacs 1.txt &
+kjob 1 9
+ &
+s
+
+
+
+&
+obs
+bs
+ 9
+
+ &
+obs
 jobs
+
+obs
+&
+&
+.txt &
+obs
 jobs
  &
 

@@ -6,17 +6,12 @@ void bgProcessEnd(job *jobArr, int jobIter, char *home_dir)
     pid_t pid;
     int stat;
     pid = waitpid(-1, &stat, WNOHANG);
-    if (pid < 0)
-    {
+    if (pid < 0){
         return;
     }
-    //debugging
-    // printf("pid: %d\n", pid);
-    // printf("%d ", jobIter);
-    //
+    
     for (int i = 0; i < jobIter; i++)
     {
-        // printf("%d !%s! ?%d?\n",i, jobArr[i].name, jobArr[i].id);
         if (jobArr[i].id == pid && WIFEXITED(stat))
         {
             printf("\n");

@@ -49,3 +49,6 @@ bool execCmd();
 void jobs();
 bool pipeChk();
 bool Pipe();
+void unSetVar();
+void setVar();
+void kjob();

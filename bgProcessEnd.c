@@ -1,7 +1,7 @@
 #include "header.h"
 #include "JobStruct.h"
 
-void bgProcessEnd(job *jobArr, int jobIter, char *home_dir)
+void bgProcessEnd(job *jobArr, int jobIter, char *home_dir, bool *kjobFlagPtr)
 {
     pid_t pid;
     int stat;
@@ -12,7 +12,7 @@ void bgProcessEnd(job *jobArr, int jobIter, char *home_dir)
     
     for (int i = 0; i < jobIter; i++)
     {
-        if (jobArr[i].id == pid && WIFEXITED(stat))
+        if ((jobArr[i].id == pid && WIFEXITED(stat)) || (*kjobFlagPtr == 0 && jobArr[i].id == pid) )
         {
             printf("\n");
             //debugging

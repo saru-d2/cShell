@@ -6,11 +6,12 @@ size_t zero = 0;
 job jobArr[100000];
 int jobIter = 0;
 char *homeDir;
+bool kjobFlag = true;
 
 void bgEnded()
 {
     // printf("some task ended\n");
-    bgProcessEnd(jobArr, jobIter, homeDir);
+    bgProcessEnd(jobArr, jobIter, homeDir, &kjobFlag);
 }
 
 void loop(char home_dir[])
@@ -36,10 +37,10 @@ void loop(char home_dir[])
         {
             if (!pipeChk(listOfSemiSep[i]))
             {
-                run = execCmd(listOfSemiSep[i], home_dir, jobArr, &jobIter);
+                run = execCmd(listOfSemiSep[i], home_dir, jobArr, &jobIter, &kjobFlag);
             }
             else
-                run = Pipe(listOfSemiSep[i], home_dir, jobArr, &jobIter);
+                run = Pipe(listOfSemiSep[i], home_dir, jobArr, &jobIter, &kjobFlag);
             if (!run)
                 break;
         }

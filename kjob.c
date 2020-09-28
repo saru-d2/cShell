@@ -1,7 +1,7 @@
 #include "header.h"
 #include "JobStruct.h"
 
-void kjob(int numPar, char *par[], job jobArr[], int *jobIterPtr)
+void kjob(int numPar, char *par[], job jobArr[], int *jobIterPtr, bool *kjobFlagptr)
 {
     if (numPar != 2)
     {
@@ -27,6 +27,7 @@ void kjob(int numPar, char *par[], job jobArr[], int *jobIterPtr)
         {
             if (sig == 9)
             {
+                *kjobFlagptr = false;
                 jobArr[num].running = false;
                 printf("wow much 9\n");
             }

@@ -12,7 +12,7 @@ int redirectedSym(char *st)
     return 0;
 }
 
-bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
+bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kjobFlag)
 {
     char *cmd, *breaks[1000], *par[1000];
     // write(2, "!", strlen("!"));
@@ -107,7 +107,7 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr)
     else if (strcmp(cmd, "setenv") == 0)
         setVar(numPar, par);
     else if (strcmp(cmd, "kjob") == 0)
-        kjob(numPar, par, jobArr, jobIterPtr);
+        kjob(numPar, par, jobArr, jobIterPtr, kjobFlag);
     else
     {
         char c;

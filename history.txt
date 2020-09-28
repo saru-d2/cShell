@@ -1,3 +1,5 @@
+ &
+obs
 jobs
 obs
 &
@@ -14,10 +16,21 @@ macs &
 cs &
 obs
 txt &
-vim 1.txt &
-vim 2.txt &
-jobs
-kjob 1 9
+git
+quit
+
+
+9
+
+s
+&
+t &
+s
+
+
+
+&
+9
 
 
 

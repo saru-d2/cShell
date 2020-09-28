@@ -52,3 +52,6 @@ bool Pipe();
 void unSetVar();
 void setVar();
 void kjob();
+void getshPid();
+void setChPid();
+void ctrlCZinit();

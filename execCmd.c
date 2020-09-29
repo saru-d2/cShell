@@ -48,10 +48,9 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kj
                 flags[b - 1] = true;
                 if (b == 1) // <
                 {
-                    int inFdr = open(breaks[i], O_RDONLY);  
+                    int inFdr = open(breaks[i], O_RDONLY);
                     dup2(inFdr, STDIN_FILENO);
                     close(inFdr);
-
                 }
                 else if (b == 2) // >
                 {
@@ -74,14 +73,13 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kj
         {
             par[numPar++] = breaks[i];
         }
-        
-
     }
 
     if (strcmp(cmd, "quit") == 0 || strcmp(cmd, "exit") == 0)
     {
         dup2(oldStdin, STDIN_FILENO);
         dup2(oldStdin, STDOUT_FILENO);
+        overkill(numPar, par, jobArr, jobIterPtr);
         return false;
     }
     else if (strcmp(cmd, "clear") == 0)
@@ -108,6 +106,12 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kj
         setVar(numPar, par);
     else if (strcmp(cmd, "kjob") == 0)
         kjob(numPar, par, jobArr, jobIterPtr, kjobFlag);
+    else if (strcmp(cmd, "overkill") == 0)
+        overkill(numPar, par, jobArr, jobIterPtr);
+    else if (strcmp(cmd, "fg") == 0)
+        fg(numPar, par, jobArr, jobIterPtr);
+    else if (strcmp(cmd, "bg") == 0)
+        bg(numPar, par, jobArr, jobIterPtr);
     else
     {
         char c;

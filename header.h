@@ -56,3 +56,7 @@ void getshPid();
 void setChPid();
 void ctrlCZinit();
 void addToJobArr();
+void overkill();
+void killall();
+void bg();
+void fg();

@@ -39,7 +39,9 @@ void loop(char home_dir[])
         // for ctrl-D
         if (lSize <= 0)
         {
+            printf("\n");
             run = false;
+            killall(jobArr, &jobIter);
             break;
         }
         setChPid(0, NULL);

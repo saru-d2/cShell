@@ -1,6 +1,3 @@
-obs
-jobs
-obs
 &
 &
 .txt &
@@ -15,8 +12,11 @@ macs &
 cs &
 obs
 txt &
-vim
+emacs
 jobs
+bg
+jobs
+rm
 quit
 
 

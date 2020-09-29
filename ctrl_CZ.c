@@ -36,10 +36,10 @@ void ctrlC(int nec)
 
 void ctrlZ(int nec)
 {
-    printf("hullo\n");
+    // printf("hullo\n");
     if (getpid() != shPid)
         return;
-    if (chPid!= 0)
+    if (chPid != 0)
     {
         kill(chPid, SIGTTIN);
         kill(chPid, SIGTSTP);
@@ -49,10 +49,8 @@ void ctrlZ(int nec)
         fflush(NULL);
     }
     signal(SIGTSTP, ctrlZ);
-    if (getpid() == shPid){
-        printf("\n");
-        print_PS1(homeDir);
-        fflush(NULL);
+    if (getpid() == shPid)
+    {
     }
     return;
 }

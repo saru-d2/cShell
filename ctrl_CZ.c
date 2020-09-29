@@ -43,6 +43,7 @@ void ctrlZ(int nec)
     {
         kill(chPid, SIGTTIN);
         kill(chPid, SIGTSTP);
+        printf("?%s?", chName);
         addToJobArr(chPid, chName);
         printf("wow\n");
         fflush(NULL);

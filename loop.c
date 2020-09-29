@@ -10,7 +10,6 @@ bool kjobFlag = true;
 
 void bgEnded()
 {
-    // printf("some task ended\n");
     bgProcessEnd(jobArr, jobIter, homeDir, &kjobFlag);
 }
 
@@ -19,6 +18,7 @@ void addToJobArr(pid_t id, char *name)
     printf("!%s!\n\n", name);
     jobArr[jobIter].id = id;
     strcpy(jobArr[jobIter].name, name);
+    jobArr[jobIter].running = true;
     jobIter++;
 }
 

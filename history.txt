@@ -1,6 +1,3 @@
-bs
- 9
- &
 obs
 jobs
 obs
@@ -18,10 +15,10 @@ macs &
 cs &
 obs
 txt &
-9
+vim
+jobs
+quit
 
-
-9
 
 
 9

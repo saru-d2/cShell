@@ -3,8 +3,8 @@
 
 void jobs(int numPar, char *par[], job jobArr[], int *jobIterPtr)
 {
-    int jobCnt = *jobIterPtr;
-    for (int i = 0; i < jobCnt; i++)
+    // printf("*%d*\n", *jobIterPtr);
+    for (int i = 0; i < *jobIterPtr; i++)
     {
         bool run;
         if (!jobArr[i].running)

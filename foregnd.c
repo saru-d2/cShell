@@ -3,8 +3,8 @@
 void foregnd(char cmd[], int numPar, char *par[])
 {
     // printf("wow %s\n\n", cmd);
-    write(2, cmd, strlen(cmd));
-    write(2, "!!\n", strlen("!!\n"));
+    // write(2, cmd, strlen(cmd));
+    // write(2, "!!\n", strlen("!!\n"));
     char *args[numPar + 5];
     args[0] = cmd;
     for (int i = 0; i < numPar; i++)
@@ -22,7 +22,7 @@ void foregnd(char cmd[], int numPar, char *par[])
 
     pid_t pid;
     pid = fork();
-    setChPid(pid);
+    setChPid(pid, for_ctrz);
 
     if (pid < 0)
     {

@@ -13,6 +13,7 @@ void foregnd(char cmd[], int numPar, char *par[])
 
     pid_t pid;
     pid = fork();
+    setChPid(pid);
 
     if (pid < 0){
         perror("Fork Failed");

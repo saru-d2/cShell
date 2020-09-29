@@ -33,6 +33,7 @@ void loop(char home_dir[])
             run = false;
             break;
         }
+        setChPid(0);
         cmdLine = line_read;
         toHis = strtok(cmdLine, "\n");
         int semiCnt = 0;

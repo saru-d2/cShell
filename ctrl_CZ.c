@@ -3,27 +3,30 @@
 pid_t shPid;
 pid_t chPid = 0;
 char *homeDir;
+char *chName;
 
 void getshPid()
 {
     shPid = getpid();
 }
 
-void setChPid(int id)
+void setChPid(int id, char *cmd)
 {
     chPid = id;
+    chName = cmd;
 }
 
 void ctrlC(int nec)
 {
     bool killChld = false;
     // printf("hullo\n");
-    if (getpid() == shPid && chPid != 0){
+    if (getpid() == shPid && chPid != 0)
+    {
         killChld = true;
         kill(chPid, SIGINT);
     }
     signal(SIGINT, ctrlC);
-    if (!killChld)
+    if (getpid() == shPid)
     {
         printf("\n");
         print_PS1(homeDir);
@@ -31,9 +34,26 @@ void ctrlC(int nec)
     fflush(stdout);
 }
 
-void ctrlZ()
+void ctrlZ(int nec)
 {
     printf("hullo\n");
+    if (getpid() != shPid)
+        return;
+    if (chPid!= 0)
+    {
+        kill(chPid, SIGTTIN);
+        kill(chPid, SIGTSTP);
+        addToJobArr(chPid, chName);
+        printf("wow\n");
+        fflush(NULL);
+    }
+    signal(SIGTSTP, ctrlZ);
+    if (getpid() == shPid){
+        printf("\n");
+        print_PS1(homeDir);
+        fflush(NULL);
+    }
+    return;
 }
 
 void ctrlCZinit(char *hDir)

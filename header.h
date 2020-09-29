@@ -55,3 +55,4 @@ void kjob();
 void getshPid();
 void setChPid();
 void ctrlCZinit();
+void addToJobArr();

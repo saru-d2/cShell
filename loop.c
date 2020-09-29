@@ -14,6 +14,14 @@ void bgEnded()
     bgProcessEnd(jobArr, jobIter, homeDir, &kjobFlag);
 }
 
+void addToJobArr(pid_t id, char *name)
+{
+    printf("!%s!\n\n", name);
+    jobArr[jobIter].id = id;
+    strcpy(jobArr[jobIter].name, name);
+    jobIter++;
+}
+
 void loop(char home_dir[])
 {
     historyInit();
@@ -29,11 +37,12 @@ void loop(char home_dir[])
         print_PS1(home_dir);
         int lSize = getline(&line_read, &zero, stdin);
         // for ctrl-D
-        if (lSize <= 0){
+        if (lSize <= 0)
+        {
             run = false;
             break;
         }
-        setChPid(0);
+        setChPid(0, NULL);
         cmdLine = line_read;
         toHis = strtok(cmdLine, "\n");
         int semiCnt = 0;

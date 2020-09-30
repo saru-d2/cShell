@@ -28,6 +28,7 @@ void loop(char home_dir[])
     homeDir = home_dir;
     bool run = true;
     getshPid();
+    cdInit(home_dir);
     ctrlCZinit(home_dir);
     while (run)
     {

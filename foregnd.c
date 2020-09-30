@@ -18,7 +18,7 @@ void foregnd(char cmd[], int numPar, char *par[])
         strcat(for_ctrz, " ");
         i++;
     }
-    args[numPar + 1] = for_ctrz;
+    args[numPar + 1] = NULL;
 
     pid_t pid;
     pid = fork();

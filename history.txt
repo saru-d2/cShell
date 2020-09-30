@@ -1,3 +1,6 @@
+obs
+jobs
+obs
 &
 &
 .txt &
@@ -12,13 +15,10 @@ macs &
 cs &
 obs
 txt &
-emacs
-jobs
-bg
-jobs
-rm
-quit
-
+cat
+echo
+cat
+t
 
 
 9

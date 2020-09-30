@@ -19,7 +19,7 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kj
     // write(2, line, strlen(line));
     // write(2, "!\n", strlen("!\n"));
     fflush(NULL);
-    bool flags[3] = {0, 0, 0};
+    // bool flags[3] = {0, 0, 0};
     int tknCnt = 0;
     cmd = breaks[0] = strtok(line, " \t\r\n");
     while (line != NULL)
@@ -38,36 +38,41 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kj
             continue;
         if (b > 0)
         {
-            if (flags[b - 1] == false)
-            {
-                if (b == 2 && flags[2] == true)
-                    continue;
-                if (b == 3 && flags[2] == true)
-                    continue;
-
-                flags[b - 1] = true;
                 if (b == 1) // <
                 {
                     int inFdr = open(breaks[i], O_RDONLY);
+                    if (inFdr < 0)
+                    {
+                        perror("open");
+                        return false;
+                    }
                     dup2(inFdr, STDIN_FILENO);
                     close(inFdr);
                 }
                 else if (b == 2) // >
                 {
-                    int outFdr = open(breaks[i], O_WRONLY | O_CREAT | O_TRUNC, 0664);
+                    int outFdr = open(breaks[i], O_WRONLY | O_CREAT | O_TRUNC, 0644);
                     // printf("@%d\n@", outFdr);
+                    if (outFdr < 0)
+                    {
+                        perror("open");
+                        return false;
+                    }
                     dup2(outFdr, STDOUT_FILENO);
                     close(outFdr);
                 }
-                else // >>
+                else if (b == 3) // >>
                 {
-                    int outFdr = open(breaks[i], O_WRONLY | O_CREAT | O_APPEND, 0664);
+                    int outFdr = open(breaks[i], O_WRONLY | O_CREAT | O_APPEND, 0644);
+                    if (outFdr < 0)
+                    {
+                        perror("open");
+                        return false;
+                    }
                     dup2(outFdr, STDOUT_FILENO);
                     close(outFdr);
                 }
-            }
-            else
-                continue;
+            
         }
         else
         {

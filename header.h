@@ -28,6 +28,7 @@
 void loop();      //main loop..
 void print_PS1(); //print the PS1..
 void cd();
+void cdInit();
 void pwd();
 void echo();
 void ls();

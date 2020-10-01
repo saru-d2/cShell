@@ -11,7 +11,7 @@ bool run = true;
 
 void bgEnded()
 {
-    bgProcessEnd(jobArr, jobIter, homeDir, &kjobFlag);
+    bgProcessEnd(jobArr, &jobIter, homeDir, &kjobFlag);
 }
 
 void addToJobArr(pid_t id, char *name)
@@ -71,7 +71,7 @@ void loop(char home_dir[])
                 return;
             if (!pipeChk(listOfSemiSep[i]))
             {
-                printf("NO PIPES HAHAH\n\n");
+                // printf("NO PIPES HAHAH\n\n");
                 exitCode = execCmd(listOfSemiSep[i], home_dir, jobArr, &jobIter, &kjobFlag);
             }
             else

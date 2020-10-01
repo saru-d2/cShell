@@ -50,14 +50,24 @@ int fg(int numPar, char *par[], job jobArr[], int *jobCnt)
     signal(SIGTTIN, SIG_IGN);
     signal(SIGTTOU, SIG_IGN);
 
-    tcsetpgrp(STDIN_FILENO, pid);
+    printf(")%d(\n", pid);
+    int tcret = tcsetpgrp(STDIN_FILENO, pid);
+    printf("?%d?", tcret);
     kill(pid, SIGCONT);
 
     setChPid(pid, jobArr[num].name);
     waitpid(pid, &status, WUNTRACED);
 
+    tcsetpgrp(STDIN_FILENO, getpgrp());
     signal(SIGTTIN, SIG_DFL);
     signal(SIGTTOU, SIG_DFL);
+
+    if (WIFSTOPPED(status))
+    {
+        jobArr[num].running = true;
+    }
+    char nullstr[] = "\0";
+    setChPid(0, nullstr);
 
     return 1;
 }

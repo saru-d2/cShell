@@ -4,6 +4,7 @@ pid_t shPid;
 pid_t chPid = 0;
 char *homeDir;
 char *chName;
+char blank[] = "";
 
 void getshPid()
 {
@@ -12,8 +13,12 @@ void getshPid()
 
 void setChPid(int id, char *cmd)
 {
+    // printf("@%d %s@\n", id, cmd);
     chPid = id;
+    
     chName = cmd;
+    if(chName == NULL)
+    chName = blank;
 }
 
 void ctrlC(int nec)
@@ -29,7 +34,7 @@ void ctrlC(int nec)
     if (getpid() == shPid)
     {
         printf("\n");
-        print_PS1(homeDir);
+        print_PS1(homeDir, 0);
     }
     fflush(stdout);
 }
@@ -49,7 +54,7 @@ void ctrlZ(int nec)
         fflush(NULL);
     }
     signal(SIGTSTP, ctrlZ);
-    if (getpid() == shPid)
+ if (getpid() == shPid)
     {
     }
     return;

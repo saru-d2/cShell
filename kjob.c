@@ -29,7 +29,7 @@ int kjob(int numPar, char *par[], job jobArr[], int *jobIterPtr, bool *kjobFlagp
             {
                 *kjobFlagptr = false;
                 jobArr[num].running = false;
-                printf("wow much 9\n");
+                // printf("wow much 9\n");
             }
             kill(jobArr[num].id, sig);
         }

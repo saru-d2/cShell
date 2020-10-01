@@ -1,6 +1,7 @@
 #include "header.h"
+#include "JobStruct.h"
 
-int foregnd(char cmd[], int numPar, char *par[])
+int foregnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
 {
     // printf("wow %s\n\n", cmd);
     // write(2, cmd, strlen(cmd));
@@ -22,7 +23,8 @@ int foregnd(char cmd[], int numPar, char *par[])
 
     pid_t pid;
     pid = fork();
-    setChPid(pid, for_ctrz);
+    if (pid > 0)
+        setChPid(pid, for_ctrz);
 
     if (pid < 0)
     {
@@ -43,9 +45,28 @@ int foregnd(char cmd[], int numPar, char *par[])
     else
     {
         int status;
+        signal(SIGTTIN, SIG_IGN);
+        signal(SIGTTOU, SIG_IGN);
+
+        setpgid(pid, 0);
+        tcsetpgrp(STDIN_FILENO, pid);
+
         pid_t waitRet = waitpid(pid, &status, WUNTRACED);
 
-        // write(2, "doneFork\n", strlen("doneFork\n"));
+        tcsetpgrp(STDIN_FILENO, getpgrp());
+        
+        signal(SIGTTIN, SIG_DFL);
+        signal(SIGTTOU, SIG_DFL);
+
+        if (WIFSTOPPED(status))
+        {
+            jobArray[(*jobIter)].id = pid;
+            strcpy(jobArray[(*jobIter)].name, for_ctrz);
+            jobArray[(*jobIter)].running = true;
+            *jobIter += 1;
+        }
+        char nullstr[] = "\0";
+        setChPid(0, nullstr);
     }
     return 1;
     // write(2, "doneEx\n", strlen("doneEx\n"));

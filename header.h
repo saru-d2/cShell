@@ -62,3 +62,4 @@ int killall();
 int bg();
 int fg();
 void quit();
+void overKillFlagTrue();

@@ -38,7 +38,7 @@ int jobs(int numPar, char *par[], job jobArr[], int *jobIterPtr)
         printf("[%d] ", i +1);
         if (run)printf("Running ");
         else printf("Stopped ");
-        printf("%s [%d]\n", jobArr[i].name, jobArr[i].id + 1);
+        printf("%s [%d]\n", jobArr[i].name, jobArr[i].id);
 
     }
     return 1;

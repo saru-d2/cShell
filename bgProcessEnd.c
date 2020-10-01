@@ -1,18 +1,22 @@
 #include "header.h"
 #include "JobStruct.h"
 
-void bgProcessEnd(job *jobArr, int jobIter, char *home_dir, bool *kjobFlagPtr)
+bool overkillflag = false;
+
+void bgProcessEnd(job *jobArr, int *jobIter, char *home_dir, bool *kjobFlagPtr)
 {
     pid_t pid;
     int stat;
     pid = waitpid(-1, &stat, WNOHANG);
-    if (pid < 0){
+    if (pid < 0)
+    {
         return;
     }
-    
-    for (int i = 0; i < jobIter; i++)
+
+    for (int i = 0; i < *jobIter; i++)
     {
-        if ((jobArr[i].id == pid && WIFEXITED(stat)) || (*kjobFlagPtr == 0 && jobArr[i].id == pid) )
+        if ((jobArr[i].id == pid && WIFEXITED(stat)) || (*kjobFlagPtr == 0 && jobArr[i].id == pid) || overkillflag)
+
         {
             printf("\n");
             //debugging
@@ -30,5 +34,13 @@ void bgProcessEnd(job *jobArr, int jobIter, char *home_dir, bool *kjobFlagPtr)
             break;
         }
     }
+    if (overkillflag)
+        *jobIter = false;
+    overkillflag = false;
     return;
+}
+
+void overKillFlagTrue()
+{
+    overkillflag = true;
 }

@@ -1,16 +1,3 @@
-bs
- 9
- &
-obs
-jobs
-obs
-&
-&
-.txt &
-obs
-jobs
- &
-bs
 .txt &
 .txt &
 s
@@ -18,23 +5,19 @@ macs &
 cs &
 obs
 txt &
-t
-
-
-t
-
-
-9
-
-s
-&
-
-s
-
-
-
-&
-9
+vim
+vim
+overkill
+jobs
+vim
+vim
+jobs
+overkill
+overkill
+jobs
+vim
+jobs
+pinfo
 
 
 

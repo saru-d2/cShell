@@ -35,7 +35,7 @@ bool qPressed()
     return false;
 }
 
-void interr(int timeInt)
+int interr(int timeInt)
 {
     long noOfThreads = sysconf(_SC_NPROCESSORS_ONLN);
     char buffer[1000];
@@ -52,7 +52,7 @@ void interr(int timeInt)
         if (fd == NULL)
         {
             perror("nightswatch interrupt: /proc/interrupts");
-            break;
+            return 1;
         }
         int i = 0;
         while (fgets(buffer, 1000, fd) != NULL && i++ < 3)
@@ -79,15 +79,15 @@ void interr(int timeInt)
         }
 
         if (qPressed())
-            return;
+            return 1;
         sleep(timeInt);
         if (qPressed())
-            return;
+            return 1;
     }
-    return;
+    return 1;
 }
 
-void newBorn(int timeInt)
+int newBorn(int timeInt)
 {
     bool run = true;
     int i = 0;
@@ -99,6 +99,7 @@ void newBorn(int timeInt)
         if (fd == NULL)
         {
             perror("Nightswatch newborn read /proc/loadavg");
+            return -1;
         }
         fscanf(fd, "%*s %*s %*s %*s %d", &pid);
         printf("%d\n", pid);
@@ -109,9 +110,10 @@ void newBorn(int timeInt)
             break;
         fclose(fd);
     }
+    return 1;
 }
 
-void nightswatch(int numPar, char *par[])
+int nightswatch(int numPar, char *par[])
 {
     // printf("timeInt: %d\n", timeInt);
     if (numPar == 3 && strcmp(par[0], "-n") == 0)
@@ -119,38 +121,39 @@ void nightswatch(int numPar, char *par[])
         int timeInt = atoi(par[1]);
         if (strcmp(par[2], "interrupt") == 0)
         {
-            interr(timeInt);
+            return interr(timeInt);
         }
         else if (strcmp(par[2], "newborn") == 0)
         {
-            newBorn(timeInt);
+            return newBorn(timeInt);
             // printf("ayee\n");
         }
         else
         {
             printf("wrong input\n");
-            return;
+            return -1;
         }
     }
     else if (numPar == 3)
     {
         printf("Wrong input\n");
+        return -1;
     }
     else if (numPar == 1)
     {
         if (strcmp(par[0], "interrupt") == 0)
         {
-            interr(1);
+            return interr(1);
         }
         else if (strcmp(par[0], "newborn") == 0)
         {
-            newBorn(1);
+            return newBorn(1);
             // printf("ayee\n");
         }
         else
         {
             printf("wrong input\n");
-            return;
+            return -1;
         }
     }
 }

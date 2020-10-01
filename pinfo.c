@@ -11,7 +11,7 @@ int strToNum(char s[])
     return ret;
 }
 
-void pinfo(char *par[], int numPar, char home_dir[])
+int pinfo(char *par[], int numPar, char home_dir[])
 {
     int ID;
     if (numPar == 0)
@@ -24,7 +24,7 @@ void pinfo(char *par[], int numPar, char home_dir[])
         if (numPar > 1)
         {
             perror("pinfo: Too many arguments!");
-            return;
+            return - 1;
         }
         ID = strToNum(par[0]);
     }
@@ -34,7 +34,7 @@ void pinfo(char *par[], int numPar, char home_dir[])
     if (fd == NULL)
     {
         perror("pinfo: /proc/../stat");
-        return;
+        return -1;
     }
     printf("pid -- %d\n", ID);
     char infoStr[10000];
@@ -51,7 +51,7 @@ void pinfo(char *par[], int numPar, char home_dir[])
     if (n <= -1)
     {
         perror("error reading executable path");
-        return;
+        return -1;
     }
     infoStr[n] = '\0';
     int hlen = strlen(home_dir);
@@ -73,5 +73,5 @@ void pinfo(char *par[], int numPar, char home_dir[])
         strcat(fin, infoStr + hlen);
     }
     printf("Executable path -- %s\n", fin);
-    return;
+    return 1;
 }

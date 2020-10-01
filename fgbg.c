@@ -1,41 +1,41 @@
 #include "header.h"
 #include "JobStruct.h"
 
-void bg(int numPar, char *par[], job jobArr[], int *jobCnt)
+int bg(int numPar, char *par[], job jobArr[], int *jobCnt)
 {
     printf("bg\n");
     if (numPar != 1)
     {
         printf("Wrong number of arguments\n");
-        return;
+        return -1;
     }
     int num = atoi(par[0]);
     if (num < 1 || num > *jobCnt)
     {
         printf("Job doesnt exist\n");
-        return;
+        return -1;
     }
     num--;
     pid_t pid = jobArr[num].id;
     kill(pid, SIGTTIN);
     kill(pid, SIGCONT);
-    return;
+    return 1;
 }
 
-void fg(int numPar, char *par[], job jobArr[], int *jobCnt)
+int fg(int numPar, char *par[], job jobArr[], int *jobCnt)
 {
     int status;
     printf("fg\n");
     if (numPar != 1)
     {
         printf("Wrong no. of arguments");
-        return;
+        return -1;
     }
     int num = atoi(par[0]);
     if (num <= 0 || num > *jobCnt)
     {
         printf("Job doesn't exist\n");
-        return;
+        return -1;
     }
     bool done = false;
     num--;
@@ -43,7 +43,7 @@ void fg(int numPar, char *par[], job jobArr[], int *jobCnt)
     if (pid == 0)
     {
         printf("pid didn't exist\n");
-        return;
+        return -1;
     }
     jobArr[num].running = false;
 
@@ -59,5 +59,5 @@ void fg(int numPar, char *par[], job jobArr[], int *jobCnt)
     signal(SIGTTIN, SIG_DFL);
     signal(SIGTTOU, SIG_DFL);
 
-    return;
+    return 1;
 }

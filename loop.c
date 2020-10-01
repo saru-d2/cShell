@@ -7,6 +7,7 @@ job jobArr[100000];
 int jobIter = 0;
 char *homeDir;
 bool kjobFlag = true;
+bool run = true;
 
 void bgEnded()
 {
@@ -22,11 +23,20 @@ void addToJobArr(pid_t id, char *name)
     jobIter++;
 }
 
+void quit()
+{
+    printf("\n");
+    run = false;
+    killall(jobArr, &jobIter);
+    return;
+}
+
 void loop(char home_dir[])
 {
     historyInit();
     homeDir = home_dir;
-    bool run = true;
+
+    int exitCode = 0;
     getshPid();
     cdInit(home_dir);
     ctrlCZinit(home_dir);
@@ -34,18 +44,19 @@ void loop(char home_dir[])
     {
         //chk if anything ended..
         signal(SIGCHLD, bgEnded);
-        //
-        print_PS1(home_dir);
+
+        if (!run )
+            return;
+        print_PS1(home_dir, exitCode);
         int lSize = getline(&line_read, &zero, stdin);
         // for ctrl-D
         if (lSize <= 0)
         {
-            printf("\n");
-            run = false;
-            killall(jobArr, &jobIter);
+            quit();
             break;
         }
         setChPid(0, NULL);
+
         cmdLine = line_read;
         toHis = strtok(cmdLine, "\n");
         int semiCnt = 0;
@@ -56,14 +67,18 @@ void loop(char home_dir[])
         }
         for (int i = 0; i < semiCnt; i++)
         {
+            if (!run)
+                return;
             if (!pipeChk(listOfSemiSep[i]))
             {
-                run = execCmd(listOfSemiSep[i], home_dir, jobArr, &jobIter, &kjobFlag);
+                printf("NO PIPES HAHAH\n\n");
+                exitCode = execCmd(listOfSemiSep[i], home_dir, jobArr, &jobIter, &kjobFlag);
             }
             else
-                run = Pipe(listOfSemiSep[i], home_dir, jobArr, &jobIter, &kjobFlag);
+                exitCode = Pipe(listOfSemiSep[i], home_dir, jobArr, &jobIter, &kjobFlag);
             if (!run)
                 break;
+            printf("!%d!\n", exitCode);
         }
         pushHisQ(toHis);
     }

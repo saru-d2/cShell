@@ -14,7 +14,7 @@ void assignPermissions(char permissions[], struct stat s)
     s.st_mode &S_IXOTH ? strcat(permissions, "x") : strcat(permissions, "-");
 }
 
-void ls(char *par[], int numPar, char home_dir[])
+int ls(char *par[], int numPar, char home_dir[])
 {
     bool a = false, l = false;
     char *dirList[10000], dot[] = ".";
@@ -54,6 +54,7 @@ void ls(char *par[], int numPar, char home_dir[])
         if (cnt < 0)
         {
             perror("ls");
+            return -1;
         }
         int numHardlinks, size;
         char fName[100000];
@@ -100,4 +101,5 @@ void ls(char *par[], int numPar, char home_dir[])
             printf("%s\n", fName);
         }
     }
+    return 1;
 }

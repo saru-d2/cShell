@@ -1,6 +1,6 @@
 #include "header.h"
 
-void foregnd(char cmd[], int numPar, char *par[])
+int foregnd(char cmd[], int numPar, char *par[])
 {
     // printf("wow %s\n\n", cmd);
     // write(2, cmd, strlen(cmd));
@@ -27,7 +27,7 @@ void foregnd(char cmd[], int numPar, char *par[])
     if (pid < 0)
     {
         perror("Fork Failed");
-        return;
+        return -1;
     }
     if (pid == 0)
     {
@@ -35,7 +35,8 @@ void foregnd(char cmd[], int numPar, char *par[])
         if (xvpret < 0)
         {
             perror("Error: command not found");
-            exit(EXIT_FAILURE);
+            return -1;
+            // exit(EXIT_FAILURE);
         }
         fflush(NULL);
     }
@@ -46,5 +47,6 @@ void foregnd(char cmd[], int numPar, char *par[])
 
         // write(2, "doneFork\n", strlen("doneFork\n"));
     }
+    return 1;
     // write(2, "doneEx\n", strlen("doneEx\n"));
 }

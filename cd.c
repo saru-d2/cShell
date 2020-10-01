@@ -1,17 +1,17 @@
 #include "header.h"
 char prev[1000];
 
-void cd(int numPar, char *par[], char home_dir[])
+int cd(int numPar, char *par[], char home_dir[])
 {
     if (numPar > 1)
     {
         perror("Too many arguments");
-        return;
+        return -1 ;
     };
     if (numPar == 0)
     {
         chdir(home_dir);
-        return;
+        return -1;
     }
     char path[100000], temp[100000];
     strcpy(path, par[0]);
@@ -32,8 +32,9 @@ void cd(int numPar, char *par[], char home_dir[])
         if (valid < 0)
         {
             perror("cd");
+            return -1;
         }
-        return;
+        return 1;
     }
     if (strcmp("-", par[0]) == 0)
     {
@@ -45,7 +46,9 @@ void cd(int numPar, char *par[], char home_dir[])
     if (valid < 0)
     {
         perror("cd");
+        return -1;
     }
+    return 1;
 }
 
 void cdInit(char homeDir[])

@@ -1,3 +1,6 @@
+bs
+ 9
+ &
 obs
 jobs
 obs
@@ -15,9 +18,9 @@ macs &
 cs &
 obs
 txt &
-cat
-echo
-cat
+t
+
+
 t
 
 

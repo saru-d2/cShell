@@ -1,12 +1,12 @@
 #include "header.h"
 #include "JobStruct.h"
 
-void kjob(int numPar, char *par[], job jobArr[], int *jobIterPtr, bool *kjobFlagptr)
+int kjob(int numPar, char *par[], job jobArr[], int *jobIterPtr, bool *kjobFlagptr)
 {
     if (numPar != 2)
     {
         printf("wrong no. of arguments\n");
-        exit(0);
+        return -1;
     }
     int it = *jobIterPtr;
     int num = atoi(par[0]);
@@ -18,7 +18,7 @@ void kjob(int numPar, char *par[], job jobArr[], int *jobIterPtr, bool *kjobFlag
     if (it < num || num < 0)
     {
         printf("wrong number for arg1\n");
-        exit(0);
+        return -1;
     }
     else
     {
@@ -36,7 +36,8 @@ void kjob(int numPar, char *par[], job jobArr[], int *jobIterPtr, bool *kjobFlag
         else
         {
             printf("it wasnt running\n");
-            exit(0);
+            return -1;
         }
     }
+    return 1;
 }

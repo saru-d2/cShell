@@ -12,7 +12,7 @@ int redirectedSym(char *st)
     return 0;
 }
 
-bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kjobFlag)
+int execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kjobFlag)
 {
     char *cmd, *breaks[1000], *par[1000];
     // write(2, "!", strlen("!"));
@@ -21,6 +21,7 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kj
     fflush(NULL);
     // bool flags[3] = {0, 0, 0};
     int tknCnt = 0;
+    int exitCode;
     cmd = breaks[0] = strtok(line, " \t\r\n");
     while (line != NULL)
     {
@@ -38,41 +39,40 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kj
             continue;
         if (b > 0)
         {
-                if (b == 1) // <
+            if (b == 1) // <
+            {
+                int inFdr = open(breaks[i], O_RDONLY);
+                if (inFdr < 0)
                 {
-                    int inFdr = open(breaks[i], O_RDONLY);
-                    if (inFdr < 0)
-                    {
-                        perror("open");
-                        return false;
-                    }
-                    dup2(inFdr, STDIN_FILENO);
-                    close(inFdr);
+                    perror("open");
+                    return false;
                 }
-                else if (b == 2) // >
+                dup2(inFdr, STDIN_FILENO);
+                close(inFdr);
+            }
+            else if (b == 2) // >
+            {
+                int outFdr = open(breaks[i], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+                // printf("@%d\n@", outFdr);
+                if (outFdr < 0)
                 {
-                    int outFdr = open(breaks[i], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-                    // printf("@%d\n@", outFdr);
-                    if (outFdr < 0)
-                    {
-                        perror("open");
-                        return false;
-                    }
-                    dup2(outFdr, STDOUT_FILENO);
-                    close(outFdr);
+                    perror("open");
+                    return false;
                 }
-                else if (b == 3) // >>
+                dup2(outFdr, STDOUT_FILENO);
+                close(outFdr);
+            }
+            else if (b == 3) // >>
+            {
+                int outFdr = open(breaks[i], O_WRONLY | O_CREAT | O_APPEND, 0644);
+                if (outFdr < 0)
                 {
-                    int outFdr = open(breaks[i], O_WRONLY | O_CREAT | O_APPEND, 0644);
-                    if (outFdr < 0)
-                    {
-                        perror("open");
-                        return false;
-                    }
-                    dup2(outFdr, STDOUT_FILENO);
-                    close(outFdr);
+                    perror("open");
+                    return false;
                 }
-            
+                dup2(outFdr, STDOUT_FILENO);
+                close(outFdr);
+            }
         }
         else
         {
@@ -85,38 +85,40 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kj
         dup2(oldStdin, STDIN_FILENO);
         dup2(oldStdin, STDOUT_FILENO);
         overkill(numPar, par, jobArr, jobIterPtr);
-        return false;
+        quit();
+        return -2;
     }
+
     else if (strcmp(cmd, "clear") == 0)
-        clear();
+        exitCode = clear();
     else if (strcmp(cmd, "cd") == 0)
-        cd(numPar, par, home_dir);
+        exitCode = cd(numPar, par, home_dir);
     else if (strcmp(cmd, "pwd") == 0)
-        pwd();
+        exitCode = pwd();
     else if (strcmp(cmd, "echo") == 0)
-        echo(par, numPar);
+        exitCode = echo(par, numPar);
     else if (strcmp(cmd, "ls") == 0)
-        ls(par, numPar, home_dir);
+        exitCode = ls(par, numPar, home_dir);
     else if (strcmp(cmd, "pinfo") == 0)
-        pinfo(par, numPar, home_dir);
+        exitCode = pinfo(par, numPar, home_dir);
     else if (strcmp(cmd, "history") == 0)
-        printHis(numPar, par);
+        exitCode = printHis(numPar, par);
     else if (strcmp(cmd, "nightswatch") == 0)
-        nightswatch(numPar, par);
+        exitCode = nightswatch(numPar, par);
     else if (strcmp(cmd, "jobs") == 0)
-        jobs(numPar, par, jobArr, jobIterPtr);
+        exitCode = jobs(numPar, par, jobArr, jobIterPtr);
     else if (strcmp(cmd, "unsetenv") == 0)
-        unSetVar(numPar, par);
+        exitCode = unSetVar(numPar, par);
     else if (strcmp(cmd, "setenv") == 0)
-        setVar(numPar, par);
+        exitCode = setVar(numPar, par);
     else if (strcmp(cmd, "kjob") == 0)
-        kjob(numPar, par, jobArr, jobIterPtr, kjobFlag);
+        exitCode = kjob(numPar, par, jobArr, jobIterPtr, kjobFlag);
     else if (strcmp(cmd, "overkill") == 0)
-        overkill(numPar, par, jobArr, jobIterPtr);
+        exitCode = overkill(numPar, par, jobArr, jobIterPtr);
     else if (strcmp(cmd, "fg") == 0)
-        fg(numPar, par, jobArr, jobIterPtr);
+        exitCode = fg(numPar, par, jobArr, jobIterPtr);
     else if (strcmp(cmd, "bg") == 0)
-        bg(numPar, par, jobArr, jobIterPtr);
+        exitCode = bg(numPar, par, jobArr, jobIterPtr);
     else
     {
         char c;
@@ -127,9 +129,9 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kj
         else
             c = par[numPar - 1][strlen(par[numPar - 1]) - 1];
         if (c == '&')
-            backgnd(cmd, numPar, par, jobArr, jobIterPtr);
+            exitCode = backgnd(cmd, numPar, par, jobArr, jobIterPtr);
         else
-            foregnd(cmd, numPar, par, jobArr, jobIterPtr);
+            exitCode = foregnd(cmd, numPar, par, jobArr, jobIterPtr);
     }
     dup2(oldStdin, STDIN_FILENO);
     dup2(oldStdin, STDOUT_FILENO);
@@ -137,5 +139,5 @@ bool execCmd(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kj
     close(oldStdout);
     close(oldStdin);
     // write(2, "done\n", strlen("done\n"));
-    return true;
+    return exitCode;
 }

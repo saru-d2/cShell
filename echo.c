@@ -1,6 +1,6 @@
 #include "header.h"
 
-void echo(char *par[], int numPar){
+int echo(char *par[], int numPar){
     char str[100000];
     strcpy(str, "");
     for(int i =0; i<numPar; i++){
@@ -8,4 +8,5 @@ void echo(char *par[], int numPar){
         strcat(str, " ");
     }
     printf("%s\n", str);
+    return 1;
 }

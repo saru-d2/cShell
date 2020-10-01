@@ -1,7 +1,7 @@
 #include "header.h"
 #include "JobStruct.h"
 
-void jobs(int numPar, char *par[], job jobArr[], int *jobIterPtr)
+int jobs(int numPar, char *par[], job jobArr[], int *jobIterPtr)
 {
     // printf("*%d*\n", *jobIterPtr);
     for (int i = 0; i < *jobIterPtr; i++)
@@ -41,4 +41,5 @@ void jobs(int numPar, char *par[], job jobArr[], int *jobIterPtr)
         printf("%s [%d]\n", jobArr[i].name, jobArr[i].id + 1);
 
     }
+    return 1;
 }

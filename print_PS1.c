@@ -1,6 +1,9 @@
 #include "header.h"
 
-void print_PS1(char home_dir[])
+char happy[] = ":')";
+char sad[] = ":'(";
+
+void print_PS1(char home_dir[], int exitCode)
 {
     char user[10000], cwd[10000], hostName[10000];
     getlogin_r(user, sizeof(user));
@@ -30,7 +33,8 @@ void print_PS1(char home_dir[])
         {
             strcat(path, "~");
             int ind = 1;
-            for (int i = hn; i<pn; i++){
+            for (int i = hn; i < pn; i++)
+            {
                 path[ind++] = cwd[i];
             }
             path[ind] = '\0';
@@ -41,5 +45,9 @@ void print_PS1(char home_dir[])
             strcat(addr, cwd);
         }
     }
+    if (exitCode == 1)
+        printf("%s", happy);
+    else if (exitCode == -1)
+        printf("%s", sad);
     printf("<" TANGO_GREEN "%s@%s" TANGO_WHITE ":" TANGO_CYAN "%s" TANGO_WHITE "> ", user, hostName, addr);
 }

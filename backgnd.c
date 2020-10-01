@@ -1,11 +1,11 @@
 #include "header.h"
 #include "JobStruct.h"
 
-void backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
+int backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
 {
     printf("in bgrnd %d\n", *jobIter);
     fflush(NULL);
-   
+
     pid_t pid, childP;
     char *args[numPar + 5];
     // strcpy(args[0], cmd);
@@ -16,10 +16,12 @@ void backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
         args[i + 1] = par[i];
     }
     fflush(NULL);
-    if (strcmp(args[numPar] , "&") == 0){
+    if (strcmp(args[numPar], "&") == 0)
+    {
         args[numPar] = NULL;
     }
-    else {
+    else
+    {
         args[numPar][strlen(args[numPar]) - 1] = '\0';
     }
     args[numPar + 1] = NULL;
@@ -29,6 +31,7 @@ void backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
     if (pid < 0)
     {
         perror("fork failed");
+        return -1;
     }
     else if (pid == 0)
     {
@@ -37,15 +40,16 @@ void backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
         if (exret < 0)
         {
             perror("process failed");
-            exit(EXIT_FAILURE);
+            return -1;
         }
     }
     else
     {
         char toJobArr[1000];
-        int i =0;
+        int i = 0;
         strcpy(toJobArr, "");
-        while(args[i] != NULL){
+        while (args[i] != NULL)
+        {
             strcat(toJobArr, args[i]);
             strcat(toJobArr, " ");
             i++;
@@ -56,5 +60,5 @@ void backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
         *jobIter += 1;
         printf("[%d] %d %s\n", *jobIter, pid, toJobArr);
     }
-    return;
+    return 1;
 }

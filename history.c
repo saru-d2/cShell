@@ -76,12 +76,12 @@ void historyInit()
     updateHistory();
 }
 
-void printHis(int numPar, char *par[])
+int printHis(int numPar, char *par[])
 {
     if (numPar > 1)
     {
         perror("history: Too many arguments:");
-        return;
+        return -1;
     }
     int num = 10;
     if (numPar == 1)
@@ -99,4 +99,5 @@ void printHis(int numPar, char *par[])
         temp = temp->next;
         i++;
     }
+    return 1;
 }

@@ -27,7 +27,6 @@ int backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
     args[numPar + 1] = NULL;
     int exret = 1;
     pid = fork();
-    setpgid(0, 0);
     if (pid < 0)
     {
         perror("fork failed");
@@ -35,6 +34,7 @@ int backgnd(char cmd[], int numPar, char *par[], job jobArray[], int *jobIter)
     }
     else if (pid == 0)
     {
+        setpgid(0, 0);
         childP = getpid();
         exret = execvp(cmd, args);
         if (exret < 0)

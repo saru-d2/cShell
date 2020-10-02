@@ -1,6 +1,6 @@
 #include "header.h"
 #include "JobStruct.h"
-char *line_read, *listOfSemiSep[1000], *cmdLine, *toHis;
+char *line_read, *listOfSemiSep[1000], *cmdLine, *toHis, toHisStr[1000];
 // char *breaks[1000], *cmd, *par[1000];
 size_t zero = 0;
 job jobArr[100000];
@@ -59,7 +59,7 @@ void loop(char home_dir[])
         setChPid(0, "\0");
 
         cmdLine = line_read;
-        toHis = strtok(cmdLine, "\n");
+        strcpy(toHisStr, line_read);
         int semiCnt = 0;
         listOfSemiSep[0] = strtok(line_read, ";\n");
         while (listOfSemiSep[semiCnt] != NULL)
@@ -81,6 +81,7 @@ void loop(char home_dir[])
                 break;
             // printf("!%d!\n", exitCode);
         }
+        toHis = strtok(toHisStr, "\n");
         pushHisQ(toHis);
     }
 }

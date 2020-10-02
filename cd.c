@@ -10,8 +10,8 @@ int cd(int numPar, char *par[], char home_dir[])
     };
     if (numPar == 0)
     {
-        chdir(home_dir);
-        return -1;
+        int ret = chdir(home_dir);
+        return ret;
     }
     char path[100000], temp[100000];
     strcpy(path, par[0]);

@@ -156,4 +156,8 @@ int nightswatch(int numPar, char *par[])
             return -1;
         }
     }
+    else {
+         printf("Wrong input\n");
+        return -1;
+    }
 }

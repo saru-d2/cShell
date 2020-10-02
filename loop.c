@@ -44,11 +44,12 @@ void loop(char home_dir[])
     {
         //chk if anything ended..
         signal(SIGCHLD, bgEnded);
-
+        printf("@@@@\n");
         if (!run )
             return;
         print_PS1(home_dir, exitCode);
         int lSize = getline(&line_read, &zero, stdin);
+        // printf("{%s}", line_read);
         // for ctrl-D
         if (lSize <= 0)
         {

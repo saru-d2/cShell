@@ -1,3 +1,14 @@
+ 9
+ &
+obs
+jobs
+obs
+&
+&
+.txt &
+obs
+jobs
+ &
 bs
 .txt &
 .txt &
@@ -6,18 +17,20 @@ macs &
 cs &
 obs
 txt &
-emacs
-emacs
-emacs
-emacs
-overkill
-vim
-vim
-overkill
-jobs
-jhsdjf
-jobs
-pinfo
+ls
+
+
+ls
+cs
+e
+
+&
+obs
+ &
+bs
+o
+&
+
 
 &
 bs

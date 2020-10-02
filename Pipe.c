@@ -1,7 +1,7 @@
 #include "header.h"
 #include "JobStruct.h"
 
-bool Pipe(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kjobFlag)
+int Pipe(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kjobFlag)
 {
     int exRet;
     int numPipeSep = 0;
@@ -58,7 +58,7 @@ bool Pipe(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kjobF
             close(fdPipe[(2 * i) + 1]);
         }
         exRet = execCmd(pipeSep[i], home_dir, jobArr, jobIterPtr, kjobFlag);
-        fprintf(stderr, "done %d\n", exRet);
+        // fprintf(stderr, "done %d\n", exRet);
         fflush(NULL);
         dup2(oldStdin, STDIN_FILENO);
         dup2(oldStdout, STDOUT_FILENO);

@@ -49,7 +49,7 @@ int interr();
 int execCmd();
 int jobs();
 bool pipeChk();
-bool Pipe();
+int Pipe();
 int unSetVar();
 int setVar();
 int kjob();

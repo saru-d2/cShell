@@ -5,11 +5,12 @@ bool overkillflag = false;
 
 void bgProcessEnd(job *jobArr, int *jobIter, char *home_dir, bool *kjobFlagPtr)
 {
+    printf("hello\n");
     pid_t pid;
     int stat;
     while ((pid = waitpid(-1, &stat, WNOHANG)) > 0)
     {
-        if (pid < 0)
+        if (pid <= 0)
         {
             return;
         }
@@ -28,7 +29,8 @@ void bgProcessEnd(job *jobArr, int *jobIter, char *home_dir, bool *kjobFlagPtr)
                         printf("exitted normally\n");
                     else
                         printf("exitted with some errors\n");
-                    print_PS1(home_dir);
+                    if (xStat == 0)xStat++;else xStat = -1;
+                    print_PS1(home_dir, xStat);
                     fflush(NULL);
                     jobArr[i].running = false;
 

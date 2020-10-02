@@ -1,4 +1,3 @@
- 9
  &
 obs
 jobs
@@ -17,14 +16,15 @@ macs &
 cs &
 obs
 txt &
-ls
-
-
-ls
-cs
-e
+vim
+fg
 
 &
+&
+bs
+o
+
+
 obs
  &
 bs

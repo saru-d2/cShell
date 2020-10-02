@@ -39,7 +39,7 @@ int cd(int numPar, char *par[], char home_dir[])
     if (strcmp("-", par[0]) == 0)
     {
         strcpy(path, prev);
-        printf("@%s@\n", path);
+        printf("%s\n", path);
     }
     getcwd(prev, sizeof(prev));
     int valid = chdir(path);

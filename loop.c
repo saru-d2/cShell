@@ -44,7 +44,7 @@ void loop(char home_dir[])
     {
         //chk if anything ended..
         signal(SIGCHLD, bgEnded);
-        printf("@@@@\n");
+        // printf("@@@@\n");
         if (!run )
             return;
         print_PS1(home_dir, exitCode);
@@ -56,7 +56,7 @@ void loop(char home_dir[])
             quit();
             break;
         }
-        setChPid(0, NULL);
+        setChPid(0, "\0");
 
         cmdLine = line_read;
         toHis = strtok(cmdLine, "\n");

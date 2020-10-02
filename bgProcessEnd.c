@@ -5,7 +5,7 @@ bool overkillflag = false;
 
 void bgProcessEnd(job *jobArr, int *jobIter, char *home_dir, bool *kjobFlagPtr)
 {
-    printf("hello\n");
+    // printf("hello\n");
     pid_t pid;
     int stat;
     while ((pid = waitpid(-1, &stat, WNOHANG)) > 0)

@@ -6,12 +6,17 @@ int cd(int numPar, char *par[], char home_dir[])
     if (numPar > 1)
     {
         perror("Too many arguments");
-        return -1 ;
+        return -1;
     };
     if (numPar == 0)
     {
         int ret = chdir(home_dir);
-        return ret;
+        if (ret < 0)
+        {
+            perror("cd");
+            return -1;
+        }
+        return 1;
     }
     char path[100000], temp[100000];
     strcpy(path, par[0]);

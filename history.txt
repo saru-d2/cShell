@@ -1,3 +1,4 @@
+bs
 .txt &
 .txt &
 s
@@ -5,22 +6,18 @@ macs &
 cs &
 obs
 txt &
+emacs
+emacs
+emacs
+emacs
+overkill
 vim
 vim
 overkill
 jobs
-vim
-vim
-jobs
-overkill
-overkill
-jobs
-vim
+jhsdjf
 jobs
 pinfo
-
-
-
 
 &
 bs

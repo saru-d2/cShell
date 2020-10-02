@@ -64,6 +64,6 @@ bool Pipe(char *line, char *home_dir, job jobArr[], int *jobIterPtr, bool *kjobF
         dup2(oldStdout, STDOUT_FILENO);
     }
     int stat;
-    printf("!!%d!!\n", exRet);
+    // printf("!!%d!!\n", exRet);
     return exRet;
 }

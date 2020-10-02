@@ -78,7 +78,7 @@ void loop(char home_dir[])
                 exitCode = Pipe(listOfSemiSep[i], home_dir, jobArr, &jobIter, &kjobFlag);
             if (!run)
                 break;
-            printf("!%d!\n", exitCode);
+            // printf("!%d!\n", exitCode);
         }
         pushHisQ(toHis);
     }

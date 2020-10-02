@@ -1,0 +1,20 @@
+pinfo
+     pinfo
+pinfo
+pinfo
+pinfo
+pinfo | wc
+ps | wc
+history
+history
+history
+ls
+ls -a
+history
+ps | wc |wc
+ps -q
+vim -as
+rm wq
+rm kdsjksjdfhkjsfd
+rm ds
+rm kdsj kdsfj

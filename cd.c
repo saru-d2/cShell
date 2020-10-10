@@ -5,7 +5,7 @@ int cd(int numPar, char *par[], char home_dir[])
 {
     if (numPar > 1)
     {
-        perror("Too many arguments");
+        perror(" Too many arguments");
         return -1;
     };
     if (numPar == 0)
